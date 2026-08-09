@@ -24,3 +24,7 @@
 ^STEP18:fixed_stress_25m=node_arena/fixed_compiler_stress_25m.mjs!duration_1500000!seed_260825
 ^STEP19:solution_patch=arena/solutions/residual_fix.patch!targeted_10_cases
 ^STEP20:solution_replay=70965_probes!runtime_fail_0!findings_0
+^STEP21:download_upstream_fixes=codeload_dicel-unified@70611fb7
+^STEP22:deep_stress_25m=node_arena/deep_semantic_stress_25m.mjs!duration_1500000!seed_260830
+^STEP23:deep_solution_patch=arena/solutions/deep_semantic_fix.patch
+^STEP24:deep_solution_replay=70939_probes!runtime_fail_0!findings_0

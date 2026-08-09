@@ -1,0 +1,164 @@
+--- /tmp/dicel-next/scripts/pipeline/lib/semantic.mjs	2026-08-09 14:49:18.000000000 +0000
++++ /tmp/dicel-deep-solution/scripts/pipeline/lib/semantic.mjs	2026-08-09 15:19:53.613529966 +0000
+@@ -12,6 +12,7 @@
+ export function check(ir) {
+   const diagnostics = [];
+   const fnNames = new Set(ir.fns.map((f) => f.name));
++  const fnArities = new Map(ir.fns.map((f) => [f.name, f.params.length]));
+ 
+   // duplicate functions
+   const seen = new Set();
+@@ -22,7 +23,10 @@
+ 
+   // type names
+   for (const s of ir.structs) {
++    const fieldNames = new Set();
+     for (const f of s.fields) {
++      if (fieldNames.has(f.name)) diagnostics.push({ severity: 'error', message: `struct ${s.name}: duplicate field ${f.name}` });
++      fieldNames.add(f.name);
+       if (!KNOWN_TYPES.has(f.type)) {
+         diagnostics.push({ severity: 'error', message: `struct ${s.name} field ${f.name}: unknown type "${f.type}"` });
+       }
+@@ -33,14 +37,16 @@
+     if (!KNOWN_TYPES.has(baseType(f.returnType))) {
+       diagnostics.push({ severity: 'error', message: `fn ${f.name}: unknown return type "${f.returnType}"` });
+     }
+-    const declared = new Set(f.params.map((p) => p.name));
++    const declared = new Set();
+     for (const p of f.params) {
++      if (declared.has(p.name)) diagnostics.push({ severity: 'error', message: `fn ${f.name}: duplicate parameter ${p.name}` });
++      declared.add(p.name);
+       if (!KNOWN_TYPES.has(p.type)) {
+         diagnostics.push({ severity: 'error', message: `fn ${f.name} param ${p.name}: unknown type "${p.type}"` });
+       }
+     }
+     for (const s of f.stmts) {
+-      checkStmt(s, declared, fnNames, f.name, f.returnType, diagnostics);
++      checkStmt(s, declared, fnNames, fnArities, f.name, f.returnType, diagnostics);
+     }
+     if (baseType(f.returnType) !== 'void' && !f.stmts.some((s) => s.kind === 'return')) {
+       diagnostics.push({ severity: 'error', message: `fn ${f.name}: non-void function missing return` });
+@@ -50,41 +56,45 @@
+   return { ok: !diagnostics.some((d) => d.severity === 'error'), diagnostics };
+ }
+ 
+-function checkStmt(stmt, declared, fnNames, caller, returnType, diagnostics) {
++function checkStmt(stmt, declared, fnNames, fnArities, caller, returnType, diagnostics) {
+   if (!stmt) return;
+   if (stmt.kind === 'let') {
++    if (declared.has(stmt.name)) diagnostics.push({ severity: 'error', message: `${caller}: duplicate binding ${stmt.name}` });
+     declared.add(stmt.name);
+-    checkExpr(stmt.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.expr, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (stmt.kind === 'assign') {
+-    checkExpr(stmt.target, declared, fnNames, caller, diagnostics);
+-    checkExpr(stmt.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.target, declared, fnNames, fnArities, caller, diagnostics);
++    checkExpr(stmt.expr, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (stmt.kind === 'expr_stmt') {
+-    checkExpr(stmt.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.expr, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (stmt.kind === 'return') {
+-    checkExpr(stmt.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.expr, declared, fnNames, fnArities, caller, diagnostics);
+     const expectedType = normalizeType(baseType(returnType));
+     const actualType = inferExprType(stmt.expr);
+-    if (expectedType !== 'any' && actualType !== 'any' && expectedType !== actualType && actualType !== 'null') {
++    if (expectedType !== 'any' && actualType !== 'any' && expectedType !== actualType) {
+       diagnostics.push({ severity: 'error', message: `${caller}: return type mismatch expected ${expectedType} got ${actualType}` });
+     }
+   } else if (stmt.kind === 'while') {
+-    checkExpr(stmt.cond, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.cond, declared, fnNames, fnArities, caller, diagnostics);
+     for (const sub of stmt.body || []) {
+-      checkStmt(sub, declared, fnNames, caller, returnType, diagnostics);
++      checkStmt(sub, declared, fnNames, fnArities, caller, returnType, diagnostics);
+     }
+   } else if (stmt.kind === 'if') {
+-    checkExpr(stmt.cond, declared, fnNames, caller, diagnostics);
++    checkExpr(stmt.cond, declared, fnNames, fnArities, caller, diagnostics);
+     for (const sub of stmt.then || []) {
+-      checkStmt(sub, declared, fnNames, caller, returnType, diagnostics);
++      checkStmt(sub, declared, fnNames, fnArities, caller, returnType, diagnostics);
+     }
+     for (const sub of stmt.else || []) {
+-      checkStmt(sub, declared, fnNames, caller, returnType, diagnostics);
++      checkStmt(sub, declared, fnNames, fnArities, caller, returnType, diagnostics);
+     }
+   }
+ }
+ 
+-function checkExpr(expr, declared, fnNames, caller, diagnostics) {
++function checkExpr(expr, declared, fnNames, fnArities, caller, diagnostics) {
+   if (!expr) return;
++  if (expr.kind === 'literal' && expr.type === 'int' && !Number.isSafeInteger(Number(expr.value))) {
++    diagnostics.push({ severity: 'error', message: `${caller}: integer literal outside safe range ${expr.value}` });
++  }
+   if (expr.kind === 'ident') {
+     // Globais conhecidos JS (Number, String, Math, isFinite, NaN, etc.) não geram erro de variável não declarada
+     const GLOBALS = new Set(['Number', 'String', 'Math', 'isFinite', 'isNaN', 'Object', 'parseFloat', 'parseInt', 'Boolean', 'encodeURIComponent', 'decodeURIComponent', 'Array']);
+@@ -92,38 +102,49 @@
+       diagnostics.push({ severity: 'error', message: `${caller}: undefined variable "${expr.name}"` });
+     }
+   } else if (expr.kind === 'ternary') {
+-    checkExpr(expr.cond, declared, fnNames, caller, diagnostics);
+-    checkExpr(expr.then, declared, fnNames, caller, diagnostics);
+-    checkExpr(expr.else, declared, fnNames, caller, diagnostics);
++    checkExpr(expr.cond, declared, fnNames, fnArities, caller, diagnostics);
++    checkExpr(expr.then, declared, fnNames, fnArities, caller, diagnostics);
++    checkExpr(expr.else, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'unary') {
+-    checkExpr(expr.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(expr.expr, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'typeof') {
+-    checkExpr(expr.expr, declared, fnNames, caller, diagnostics);
++    checkExpr(expr.expr, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'index_access') {
+     if (typeof expr.object === 'string') {
+-      checkExpr({ kind: 'ident', name: expr.object }, declared, fnNames, caller, diagnostics);
++      checkExpr({ kind: 'ident', name: expr.object }, declared, fnNames, fnArities, caller, diagnostics);
+     } else {
+-      checkExpr(expr.object, declared, fnNames, caller, diagnostics);
++      checkExpr(expr.object, declared, fnNames, fnArities, caller, diagnostics);
+     }
+-    checkExpr(expr.index, declared, fnNames, caller, diagnostics);
++    checkExpr(expr.index, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'member_read') {
+     if (typeof expr.object === 'string') {
+-      checkExpr({ kind: 'ident', name: expr.object }, declared, fnNames, caller, diagnostics);
++      checkExpr({ kind: 'ident', name: expr.object }, declared, fnNames, fnArities, caller, diagnostics);
+     } else {
+-      checkExpr(expr.object, declared, fnNames, caller, diagnostics);
++      checkExpr(expr.object, declared, fnNames, fnArities, caller, diagnostics);
+     }
+   } else if (expr.kind === 'method_call') {
+-    checkExpr(expr.target, declared, fnNames, caller, diagnostics);
+-    for (const a of expr.args || []) checkExpr(a, declared, fnNames, caller, diagnostics);
++    if ((expr.target?.name === 'Math' && expr.method === 'random') || (expr.target?.name === 'Date' && expr.method === 'now')) {
++      diagnostics.push({ severity: 'error', message: `${caller}: nondeterministic call ${expr.target.name}.${expr.method}` });
++    }
++    checkExpr(expr.target, declared, fnNames, fnArities, caller, diagnostics);
++    for (const a of expr.args || []) checkExpr(a, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'call') {
+     const GLOBALS = new Set(['isFinite', 'isNaN', 'parseFloat', 'parseInt', 'Boolean', 'encodeURIComponent', 'decodeURIComponent', 'String', 'Array']);
+     if (!fnNames.has(expr.callee) && !GLOBALS.has(expr.callee)) {
+       diagnostics.push({ severity: 'error', message: `${caller}: call to undefined function "${expr.callee}"` });
++    } else if (fnArities.has(expr.callee) && expr.args.length !== fnArities.get(expr.callee)) {
++      diagnostics.push({ severity: 'error', message: `${caller}: arity mismatch for ${expr.callee} expected ${fnArities.get(expr.callee)} got ${expr.args.length}` });
+     }
+-    for (const a of expr.args || []) checkExpr(a, declared, fnNames, caller, diagnostics);
++    for (const a of expr.args || []) checkExpr(a, declared, fnNames, fnArities, caller, diagnostics);
+   } else if (expr.kind === 'binary') {
+-    checkExpr(expr.left, declared, fnNames, caller, diagnostics);
+-    checkExpr(expr.right, declared, fnNames, caller, diagnostics);
++    checkExpr(expr.left, declared, fnNames, fnArities, caller, diagnostics);
++    checkExpr(expr.right, declared, fnNames, fnArities, caller, diagnostics);
++    if (['&&', '||'].includes(expr.op) && (inferExprType(expr.left) !== 'boolean' || inferExprType(expr.right) !== 'boolean')) {
++      diagnostics.push({ severity: 'error', message: `${caller}: logical operator ${expr.op} requires boolean operands` });
++    }
++    if ((expr.op === '/' || expr.op === '%') && expr.right?.kind === 'literal' && Number(expr.right.value) === 0) {
++      diagnostics.push({ severity: 'error', message: `${caller}: division or modulo by zero` });
++    }
+   } else if (expr.kind === 'member') {
+     diagnostics.push({ severity: 'warn', message: `${caller}: member access "${expr.raw}" outside subset (gap)` });
+   } else if (expr.kind === 'unknown') {

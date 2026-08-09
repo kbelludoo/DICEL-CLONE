@@ -1,0 +1,12 @@
+{
+  "report": "/tmp/DICEL-CLONE/arena/ARENA_DEEP_25M_REPORT.dicel",
+  "json": "/tmp/DICEL-CLONE/arena/ARENA_DEEP_25M_RESULTS.json",
+  "probes": 70939,
+  "findings": 11,
+  "compilePass": 54297,
+  "compileFail": 16642,
+  "runtimeTests": 31843,
+  "runtimePass": 29556,
+  "runtimeFail": 2287,
+  "durationMs": 1500087
+}

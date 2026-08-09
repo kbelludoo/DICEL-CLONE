@@ -1,0 +1,60 @@
+@DICE-L:arena-deep-solutions:1.0.0;upstream=70611fb7;status=PATCH_VALIDATED_NOT_UPSTREAM
+
+~DeepGap{
+  id:str,
+  category:str,
+  probes:num,
+  symptom:str,
+  solution:str,
+  status:str
+}
+
+~DeepGap{id:"DEEP-0001",category:"logical_type_unsoundness",probes:2287,symptom:"bool_function_returning_1_and_2_executes_as_number_2",solution:"require_boolean_operands_for_logical_ops",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0002",category:"arity",probes:2426,symptom:"one_parameter_function_called_with_zero_arguments",solution:"function_signature_arity_map",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0003",category:"arity",probes:2359,symptom:"one_parameter_function_called_with_two_arguments",solution:"function_signature_arity_map",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0004",category:"scope",probes:2053,symptom:"duplicate_struct_field_names_accepted",solution:"field_scope_uniqueness",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0005",category:"determinism",probes:1660,symptom:"Math_random_allowed_in_deterministic_subset",solution:"effect_and_nondeterminism_denylist",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0006",category:"nullability",probes:2333,symptom:"null_return_allowed_for_num_contract",solution:"remove_null_assignability_exception",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0007",category:"scope",probes:2328,symptom:"duplicate_parameter_names_accepted",solution:"parameter_scope_uniqueness",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0008",category:"numeric_safety",probes:1804,symptom:"constant_division_by_zero_accepted",solution:"constant_zero_divisor_diagnostic",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0009",category:"scope",probes:1937,symptom:"duplicate_let_binding_in_same_scope_accepted",solution:"binding_scope_uniqueness",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0010",category:"numeric_safety",probes:1836,symptom:"integer_above_javascript_safe_range_accepted",solution:"safe_integer_literal_guard_or_u64_type",status:"CONFIRMED"}
+~DeepGap{id:"DEEP-0011",category:"scope",probes:1944,symptom:"parameter_redeclared_as_let_in_same_scope",solution:"binding_scope_includes_parameters",status:"CONFIRMED"}
+
+~DeepSolution{
+  id:str,
+  files:str,
+  change:str,
+  validation:str,
+  status:str
+}
+
+~DeepSolution{id:"DEEP-SOL-0001",files:"semantic.mjs",change:"build_fn_arity_map!reject_wrong_argument_count",validation:"wrong_arity_zero_and_two_controlled_rejection",status:"PATCH_VALIDATED"}
+~DeepSolution{id:"DEEP-SOL-0002",files:"semantic.mjs",change:"detect_duplicate_fields_params_and_bindings_in_scope",validation:"duplicate_field_param_let_and_param_shadow_controlled_rejection",status:"PATCH_VALIDATED"}
+~DeepSolution{id:"DEEP-SOL-0003",files:"semantic.mjs",change:"logical_ops_require_boolean_operands!null_not_assignable_to_num",validation:"num_logical_and_null_num_controlled_rejection",status:"PATCH_VALIDATED"}
+~DeepSolution{id:"DEEP-SOL-0004",files:"semantic.mjs",change:"reject_Math_random_and_Date_now!reject_constant_division_by_zero!reject_unsafe_integer_literal",validation:"determinism_and_numeric_edge_cases_controlled_rejection",status:"PATCH_VALIDATED"}
+
+~DeepValidationSummary{
+  upstream_commit:"70611fb7d720d6c8f2837b6f119564d0a5535c83",
+  stress_duration_ms:1500087,
+  stress_probes:70939,
+  stress_runtime_fail:2287,
+  stress_invalid_program_accepted:20680,
+  stress_unique_findings:11,
+  patch_ref:"arena/solutions/deep_semantic_fix.patch",
+  patch_dry_run:true,
+  replay_probes:70939,
+  replay_compile_pass:31330,
+  replay_controlled_rejection:39609,
+  replay_runtime_tests:29556,
+  replay_runtime_pass:29556,
+  replay_runtime_fail:0,
+  replay_findings:0,
+  final_status:"DEEP_SOLUTION_VALIDATED_AWAITING_UPSTREAM"
+}
+
+~EvidenceHash{path:"arena/ARENA_DEEP_25M_REPORT.dicel",sha256:"820537c86ed9d098f4f38decadf09e758eda1c925d461033feccf104846c57ad"}
+~EvidenceHash{path:"arena/ARENA_DEEP_25M_RESULTS.json",sha256:"dc0efe20c93d3642f593c208de183a2bcdaf8b8a609b5bacaca1e2ada0610502"}
+~EvidenceHash{path:"arena/solutions/deep_semantic_fix.patch",sha256:"803b3dd8298c41f68f48a9308966f043c8fd8cc38b1c42acfca008d5993ffbdd"}
+~EvidenceHash{path:"arena/DEEP_SOLUTION_REPLAY_REPORT.dicel",sha256:"3da8e346cf4cd39aff244c9c45f3c36d65e9c7a71dfaf144db390476f3ad580f"}
+~EvidenceHash{path:"arena/DEEP_SOLUTION_REPLAY_RESULTS.json",sha256:"8b8835ab7ab8387fcac9b2a2f02d1a8d9a3e5e0454216f2a63e4e3ec615cd756"}

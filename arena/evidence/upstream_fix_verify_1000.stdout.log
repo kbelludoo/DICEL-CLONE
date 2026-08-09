@@ -1,0 +1,12 @@
+{
+  "report": "/tmp/DICEL-CLONE/arena/UPSTREAM_VERIFY_QUICK.dicel",
+  "json": "/tmp/DICEL-CLONE/arena/UPSTREAM_VERIFY_QUICK.json",
+  "probes": 1000,
+  "findings": 0,
+  "compilePass": 868,
+  "compileFail": 132,
+  "runtimeTests": 868,
+  "runtimePass": 868,
+  "runtimeFail": 0,
+  "durationMs": 3138
+}

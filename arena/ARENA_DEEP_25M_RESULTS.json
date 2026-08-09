@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "upstream_commit": "70611fb7d720d6c8f2837b6f119564d0a5535c83",
+  "seed": 260830,
+  "duration_requested_ms": 1500000,
+  "duration_actual_ms": 1500087,
+  "probes": 70939,
+  "compile_pass": 54297,
+  "compile_fail": 16642,
+  "runtime_tests": 31843,
+  "runtime_pass": 29556,
+  "runtime_fail": 2287,
+  "family_stats": {
+    "P7_CALLS": 14291,
+    "P9_SCOPE": 14242,
+    "P6_PRECEDENCE": 14239,
+    "P10_RUNTIME": 14152,
+    "P8_TYPES": 14015
+  },
+  "phase_stats": {
+    "compiled": 54297,
+    "semantic": 16642
+  },
+  "category_stats": {
+    "compile_pass": 31330,
+    "controlled_rejection": 16642,
+    "runtime_divergence": 2287,
+    "invalid_program_accepted": 20680
+  },
+  "unique_findings": [
+    {
+      "id": "DEEP-GAP-0001",
+      "hash": "a3af4212a12e7e17",
+      "category": "runtime_divergence",
+      "family": "P8_TYPES",
+      "name": "num_logical",
+      "source": "@deep_probe:1.0.0\nfn$test()->bool {\n return 1&&2\n}\n",
+      "result": {
+        "id": 11,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "fe3d55596722b85c3a2edcbd3783aa2445158cbd01b0da44e5c03c597c846817",
+        "js_sha256": "3fefd03632a27db1c61cf0e93c0b6c79c99e77e53e15ebe0cd3871431ab416df",
+        "elapsed_ms": 0.46235200000000987,
+        "runtime": true,
+        "runtime_actual": 2,
+        "runtime_expected": true,
+        "runtime_equal": false
+      },
+      "count": 2287
+    },
+    {
+      "id": "DEEP-GAP-0002",
+      "hash": "27b507028dfe02cc",
+      "category": "invalid_program_accepted",
+      "family": "P7_CALLS",
+      "name": "wrong_arity_zero",
+      "source": "fn$inc(x:num)->num {\n return x+1\n}\n@deep_probe:1.0.0\nfn$test()->num {\n return inc()\n}\n",
+      "result": {
+        "id": 15,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "0340487f2ba7be484cbf9c4de397cce79e78174787c807af700fecc6e6dc261f",
+        "js_sha256": "80096a751c15b3108f8296547d67e45887df5696d08b910537c124c2ac515d5a",
+        "elapsed_ms": 0.5548919999999953
+      },
+      "count": 2426
+    },
+    {
+      "id": "DEEP-GAP-0003",
+      "hash": "0bd246a8f63d0e33",
+      "category": "invalid_program_accepted",
+      "family": "P7_CALLS",
+      "name": "wrong_arity_two",
+      "source": "fn$inc(x:num)->num {\n return x+1\n}\n@deep_probe:1.0.0\nfn$test()->num {\n return inc(35,5)\n}\n",
+      "result": {
+        "id": 16,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "b2da1991c0111d2564799a68b9eef453cc23b092389253970018119514f6f253",
+        "js_sha256": "d3d33f2f331fd07893439d593d24e7b9c511391f4795c051fd67cc7981b57dbd",
+        "elapsed_ms": 0.5388169999999946
+      },
+      "count": 2359
+    },
+    {
+      "id": "DEEP-GAP-0004",
+      "hash": "2dbee13a131552d9",
+      "category": "invalid_program_accepted",
+      "family": "P9_SCOPE",
+      "name": "duplicate_field",
+      "source": "struct Box {\n value:num\n value:str\n}\n@deep_probe:1.0.0\nfn$test()->num {\n return 45\n}\n",
+      "result": {
+        "id": 17,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "eff0cafc22d2a2bc19e8daa46f7325b1394a15eb1e7c6ee9d927f7a8178319fc",
+        "js_sha256": "19587a5a55059de8da094b074cac136f49ae08c7654b64dba752a459096cc97b",
+        "elapsed_ms": 0.39932999999996355
+      },
+      "count": 2053
+    },
+    {
+      "id": "DEEP-GAP-0005",
+      "hash": "5d726f10c0b57a61",
+      "category": "invalid_program_accepted",
+      "family": "P10_RUNTIME",
+      "name": "math_random",
+      "source": "@deep_probe:1.0.0\nfn$test()->num {\n return Math.random()\n}\n",
+      "result": {
+        "id": 21,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "14445194fe8f7cc179fd9e1ae7d96f338f7a5d9df7c0e331425dd39eb2f5388b",
+        "js_sha256": "7419cbfee9b8f39b2f54da3ddf12dbfb7b5512b72d87adbc48f06a38ea59c365",
+        "elapsed_ms": 0.3699170000001004
+      },
+      "count": 1660
+    },
+    {
+      "id": "DEEP-GAP-0006",
+      "hash": "6bf689d9f0557e37",
+      "category": "invalid_program_accepted",
+      "family": "P8_TYPES",
+      "name": "null_num",
+      "source": "@deep_probe:1.0.0\nfn$test()->num {\n return null\n}\n",
+      "result": {
+        "id": 23,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "2e27adf04c71b5b2e4c742a5762891b602dc6216d0d2c1d6ef42facbc1016730",
+        "js_sha256": "829c955a09feddf34770e15a5e05dab9c5023a632d19e31d31368a6f23c4779c",
+        "elapsed_ms": 0.23713400000008278
+      },
+      "count": 2333
+    },
+    {
+      "id": "DEEP-GAP-0007",
+      "hash": "472baaf8d6daf32c",
+      "category": "invalid_program_accepted",
+      "family": "P7_CALLS",
+      "name": "duplicate_params",
+      "source": "@deep_probe:1.0.0\nfn$test(x:num,x:num)->num {\n return x\n}\n",
+      "result": {
+        "id": 31,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "def34bbb779aaa8738d14cd38cf995f7caa08b571baa05b2e57fbd6f786939a0",
+        "js_sha256": "d1ff155b24d4b0946a4ef1bc63b2543b60a2903f2c1c5bca9f5b13e95a6d2b63",
+        "elapsed_ms": 0.27626599999996415
+      },
+      "count": 2328
+    },
+    {
+      "id": "DEEP-GAP-0008",
+      "hash": "64961ffef043b48f",
+      "category": "invalid_program_accepted",
+      "family": "P10_RUNTIME",
+      "name": "division_zero",
+      "source": "@deep_probe:1.0.0\nfn$test()->num {\n return 4 / 0\n}\n",
+      "result": {
+        "id": 35,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "a0ec99ac023c2ceb2c2d7cf083bf447db19f1d1c0b34f72203bd36f960d8bc47",
+        "js_sha256": "50519a98a5b03f3ef0a5e5e2b58eb895e1619ffcc016e9812bf04eaa15ae22ba",
+        "elapsed_ms": 0.2030529999999544
+      },
+      "count": 1804
+    },
+    {
+      "id": "DEEP-GAP-0009",
+      "hash": "84b237181f14ed3f",
+      "category": "invalid_program_accepted",
+      "family": "P9_SCOPE",
+      "name": "duplicate_let",
+      "source": "@deep_probe:1.0.0\nfn$test()->num {\n let$x = 7\n let$x = 46\n return x\n}\n",
+      "result": {
+        "id": 40,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "8985d91f3dde0929fdcece26e5f8c3b8c7314ef479290e4da6a181346cc73538",
+        "js_sha256": "a368a145b5419f2bd4e88e35500d9aba82c9cf191e4d7f87dd4d8f6dfbdb77b8",
+        "elapsed_ms": 0.4632090000000062
+      },
+      "count": 1937
+    },
+    {
+      "id": "DEEP-GAP-0010",
+      "hash": "aae82c5c39c267f5",
+      "category": "invalid_program_accepted",
+      "family": "P10_RUNTIME",
+      "name": "huge_integer",
+      "source": "@deep_probe:1.0.0\nfn$test()->num {\n return 9007199254740993\n}\n",
+      "result": {
+        "id": 70,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "e5b86bd2132c595c34beffdbec7482c7280542162bd097bb8b59eb4c4efac767",
+        "js_sha256": "da24c66fee0313c87fbc093ed4056341dbcd8af20213a3be2c926e701f66eafe",
+        "elapsed_ms": 0.20353399999999056
+      },
+      "count": 1836
+    },
+    {
+      "id": "DEEP-GAP-0011",
+      "hash": "5819c4f6a0bef710",
+      "category": "invalid_program_accepted",
+      "family": "P9_SCOPE",
+      "name": "param_shadow",
+      "source": "@deep_probe:1.0.0\nfn$test(x:num)->num {\n let$x = 5\n return x\n}\n",
+      "result": {
+        "id": 90,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "41230da8fc846c0cf5db044acbf9cec403f13ed0b95c61e4c2d64d9b37a8782f",
+        "js_sha256": "1784126b5c11b25095bdd7ff569323b2636d27a5387c06528160c105678ba034",
+        "elapsed_ms": 0.2704080000000886
+      },
+      "count": 1944
+    }
+  ],
+  "worker_stderr": ""
+}

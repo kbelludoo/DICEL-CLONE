@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "upstream_commit": "249091e7e8ac24169e9fe91f431f004f94e3590a",
+  "seed": 260825,
+  "duration_requested_ms": 5000,
+  "duration_actual_ms": 3138,
+  "started_at": "2026-08-09T14:52:02.133Z",
+  "finished_at": "2026-08-09T14:52:05.271Z",
+  "probes": 1000,
+  "compile_pass": 868,
+  "compile_fail": 132,
+  "runtime_tests": 868,
+  "runtime_pass": 868,
+  "runtime_fail": 0,
+  "family_stats": {
+    "P2_PARSER": 202,
+    "P3_AST": 173,
+    "P4_EMITTER": 208,
+    "P1_LEXICAL": 214,
+    "P5_RUNTIME": 203
+  },
+  "phase_stats": {
+    "compiled": 868,
+    "semantic": 132
+  },
+  "category_stats": {
+    "compile_pass": 868,
+    "controlled_rejection": 132
+  },
+  "operator_stats": {
+    "<<,>>": {
+      "probes": 15,
+      "pass": 15,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "NA": {
+      "probes": 202,
+      "pass": 70,
+      "fail": 132,
+      "runtime_fail": 0
+    },
+    "/": {
+      "probes": 90,
+      "pass": 90,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "+,*": {
+      "probes": 16,
+      "pass": 16,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "~": {
+      "probes": 12,
+      "pass": 12,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "+,-": {
+      "probes": 21,
+      "pass": 21,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "?:": {
+      "probes": 15,
+      "pass": 15,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "!=": {
+      "probes": 41,
+      "pass": 41,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<=": {
+      "probes": 12,
+      "pass": 12,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "%": {
+      "probes": 65,
+      "pass": 65,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "+": {
+      "probes": 79,
+      "pass": 79,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "==": {
+      "probes": 52,
+      "pass": 52,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "&": {
+      "probes": 57,
+      "pass": 57,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "-,-": {
+      "probes": 23,
+      "pass": 23,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">": {
+      "probes": 12,
+      "pass": 12,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "*": {
+      "probes": 40,
+      "pass": 40,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "^": {
+      "probes": 10,
+      "pass": 10,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "-": {
+      "probes": 26,
+      "pass": 26,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<": {
+      "probes": 17,
+      "pass": 17,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "*,/": {
+      "probes": 23,
+      "pass": 23,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<<": {
+      "probes": 81,
+      "pass": 81,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "/ ,/": {
+      "probes": 12,
+      "pass": 12,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">=": {
+      "probes": 13,
+      "pass": 13,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "%,%": {
+      "probes": 13,
+      "pass": 13,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "|,&": {
+      "probes": 21,
+      "pass": 21,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "(+)*": {
+      "probes": 24,
+      "pass": 24,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "|": {
+      "probes": 4,
+      "pass": 4,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">>": {
+      "probes": 4,
+      "pass": 4,
+      "fail": 0,
+      "runtime_fail": 0
+    }
+  },
+  "unique_findings": [],
+  "worker_stderr": ""
+}
