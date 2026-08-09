@@ -1,0 +1,16 @@
+=== P140: TRUE ONTOGENESIS CHALLENGE (sem ontologia fornecida) ===
+Corpus (estruturas cruas, nomes de dominio ocultos):
+  open_close: defer(x.close);x.open();guard(x)
+  alloc_free: defer(m.free);m.alloc();guard(m)
+  lock_unlock: defer(mu.Unlock);mu.Lock();guard(mu)
+  session_bind: defer(sess.release);sess.acquire();guard(sess)
+
+Distancia crua (sem normalizacao):
+  open_close~alloc_free: 0.75
+  open_close~lock_unlock: 0.75
+  open_close~session_bind: 0.75
+distancia media entre pares: 0.750
+categoria de 2a ordem emergiu: false
+interpretacao: NO_CATEGORY_WITHOUT_FURNISHED_EQUIVALENCE
+
+Relatorio salvo: /tmp/auto-upstream/audit/P140_TRUE_ONTOGENESIS_REPORT.dicel

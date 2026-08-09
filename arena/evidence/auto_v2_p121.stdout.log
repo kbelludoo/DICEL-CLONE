@@ -1,0 +1,32 @@
+P121 report written to /tmp/auto-upstream/audit/P121_INDEPENDENT_LEARNING_DISCOVERY_REPORT.dicel
+{
+  "total_files": 8224,
+  "total_chars": 88178519,
+  "baseline_coverage": 0,
+  "baseline_density": 0,
+  "failure_condition_triggered": true,
+  "novel_operator_discovery_rate": 1,
+  "mechanism_independence_score": 1,
+  "novel_candidates": [
+    "safeOutPath(file:str)->str                  // nunca .generated.ts colide com fonte (Fix22)",
+    "verification:\"exact_line_double_close_zero_in_generated_index\"",
+    "generated_by=gemini_spark_local",
+    "generated_at:str",
+    "generated_at:\"2026-08-08T22:55:50.245872\"",
+    "generated_at:\"2026-08-08T22:56:06.068541\"",
+    "proposed_change:str!",
+    "description:\"Create one authoritative validation result.\",",
+    "description:\"Generated structs close with two braces; 4307 extra closing-brace lines occur across 1458 files.\",",
+    "impact:\"Strict parsing fails before type checking and blocks most nontrivial generated modules.\"",
+    "impact:\"The generated corpus cannot be parsed deterministically and type information is lost.\"",
+    "expected_improvement:\"Eliminates generated infinite recursion and restores behavioral fidelity.\"",
+    "proposed_change:\"Generate one closing brace per struct and add parse-roundtrip coverage for every emitted file.\",",
+    "expected_improvement:\"Keeps generated files parseable and overload behavior explicit.\"",
+    "expected_improvement:\"Eliminates token collisions and aligns generated files with syntax rules.\"",
+    "proposed_change:\"Keep one canonical artifact, retain history in Git, and ignore generated workspace identifiers.\",",
+    "proposed_change:str!,",
+    "proposed_change:\"Migrate headers to semicolon attributes and add a repository-wide header validator.\",",
+    "generated_at=2026-08-09T17:32:56.573Z",
+    "Suggestion{id:num!,finding_ref:num!,priority:str!,description:str!,proposed_change:str!,expected_improvement:str!}"
+  ]
+}

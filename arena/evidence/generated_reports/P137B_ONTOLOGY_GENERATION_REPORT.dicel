@@ -1,0 +1,22 @@
+@AUDIT:P137B_ONTOLOGY_GENERATION_REPORT:v1.0.0
+
+timestamp="2026-08-09T19:51:55.387Z"
+@CORPUS {
+  ~Fenom{id:"open_close", domain:"io", structure:"defer(x.close);x.open();guard(x)"}
+  ~Fenom{id:"alloc_free", domain:"memory", structure:"defer(m.free);m.alloc();guard(m)"}
+  ~Fenom{id:"lock_unlock", domain:"concurr", structure:"defer(mu.Unlock);mu.Lock();guard(mu)"}
+}
+
+@OBSERVATION {
+  common_signature="["_(_)","_(_)","_._()"]"
+  proposed_category="RESOURCE_PAIR_ACQUIRE_RELEASE"
+  reduces_complexity=true
+  cross_domain_transfer=true
+  oracle_survival=true
+  ontology_supplied_by_designer=true
+}
+
+@INTERPRETATION {
+  result="INVARIANT_DETECTED_WITH_ONTOLOGY_SUPPLIED"
+  note="O sistema detectou a invariancia de segunda ordem (assinatura comum acquire/release). CONTUDO, o mapeamento open/close/lock/unlock->acquire/release foi embutido no normalizador do designer. Logo, a ontologia foi fornecida, nao descoberta. Ontogenese autonoma NAO demonstrada com este desenho."
+}

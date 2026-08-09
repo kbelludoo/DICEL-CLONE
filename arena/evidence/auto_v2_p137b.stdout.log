@@ -1,0 +1,17 @@
+=== P137b: ONTOLOGY GENERATION (segunda-ordem invariante) ===
+Corpus (nomes de dominio ocultos): open_close@io, alloc_free@memory, lock_unlock@concurr
+Assinatura comum descoberta     : ["_(_)","_(_)","_._()"]
+Categoria proposta (sem nome previo): RESOURCE_PAIR_ACQUIRE_RELEASE
+Holdout out-of-domain           : session_bind_release
+Transfer preditivo              : true
+ONTOLOGIA fornecida no normalizador: true
+
+Resultado:
+  reduces_complexity: true
+  cross_domain_transfer: true
+  survives_external_oracle: true
+  category_generated: true
+  ontogenese_genuina (sem ontologia fornecida): false
+  SUMMARY: INVARIANT_DETECTED_WITH_ONTOLOGY_SUPPLIED
+
+Relatorio salvo: /tmp/auto-upstream/audit/P137B_ONTOLOGY_GENERATION_REPORT.dicel

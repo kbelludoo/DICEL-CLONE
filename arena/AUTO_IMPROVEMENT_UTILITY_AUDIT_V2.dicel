@@ -1,0 +1,11 @@
+@DICE-L:auto-improvement-utility-audit-v2:1.0.0;status=SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS
+~AuditSummary{criteria_pass:2,criteria_total:11,scripts_execute:true,real_compiler_mutation:false,independent_oracle:false,honest_negative_controls:true,final_status:"SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS"}
+~Finding{id:"AUTO2-001",category:"P134_circular_oracle",evidence:"predicted_and_actual_share_2654435761",status:"confirmed"}
+~Finding{id:"AUTO2-002",category:"P134_hardcoded_novelty",evidence:"banana_gap_passes_same_unique_label_check",status:"confirmed"}
+~Finding{id:"AUTO2-003",category:"P134_stub_representation",evidence:"knuthgap_label_not_present_in_compiled_operator_body",status:"confirmed"}
+~Finding{id:"AUTO2-004",category:"P138_designer_roadmap",evidence:"hardcoded_problem_space_and_strategy_switch",status:"confirmed"}
+~Finding{id:"AUTO2-005",category:"P138_subjective_metrics",evidence:"expected_value_cost_and_baseline_constants_pre_authored",status:"confirmed"}
+~Finding{id:"AUTO2-006",category:"invalid_generated_dicel",evidence:"P137B_common_signature_contains_unescaped_nested_quotes",status:"confirmed"}
+~Positive{id:"AUTO2-P01",category:"honest_negative_control",evidence:"P137b_ontology_supplied_true_and_genuine_ontogenesis_false"}
+~Positive{id:"AUTO2-P02",category:"honest_negative_control",evidence:"P140_category_emerged_false"}
+~Verdict{useful_for:"negative_controls_and_demo_benchmarks",not_proven_for:"real_autonomous_self_improvement",status:"SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS"}

@@ -1,0 +1,78 @@
+{
+  "p137b_report_quote_invalid": true,
+  "target_head": "38fb7c524c8c281e6795dd734c469d0a80f36fa6",
+  "runs": {
+    "p119": {
+      "exit": 0,
+      "stdout_sha256": "6cb4533e02e0a27d98fb0a539de63aa6dca46ed3177d292fcd0357e00ebd99fe"
+    },
+    "p121": {
+      "exit": 0,
+      "stdout_sha256": "69e825f4d1f34f65c4b07bc0f2a051b7ccc8b17f5157a69eea5bdd5c98d4ac24"
+    },
+    "p129": {
+      "exit": 0,
+      "stdout_sha256": "b547da2bdc326253d35248759a142e77e20061e6ea59b959fdf68e005c2e8135"
+    },
+    "p130": {
+      "exit": 0,
+      "stdout_sha256": "30fb2e2b92144b8b22fc07646e8d4fef5122bc2965f5980811f35e2514e14583"
+    },
+    "p134": {
+      "exit": 0,
+      "stdout_sha256": "0c5bdda3eef57f1d09409afb07c0bfbbd0e5b6b1984aa86582452c769c230ca1"
+    },
+    "p137b": {
+      "exit": 0,
+      "stdout_sha256": "4fbdeaa91f6f3b37f9ea10a0c8756003b3dd7e05d63786dab1be528e57d20205"
+    },
+    "p138": {
+      "exit": 0,
+      "stdout_sha256": "9da09fe40c2f9ef8df950fc06dd8a63ae6aa7ac2b452cbd763ff824e9aa64081"
+    },
+    "p140": {
+      "exit": 0,
+      "stdout_sha256": "28d8fb8ef7a60532342adee76cca04c008d92a06702184bab039243c0fda3cbf"
+    }
+  },
+  "checks": {
+    "p129_pre_authored": true,
+    "p130_circular": true,
+    "p130_stub": true,
+    "p134_source_and_oracle_same_constant": true,
+    "p134_circular_future": true,
+    "p134_label_hardcoded": true,
+    "p134_operator_not_compiled": true,
+    "p137b_honest": true,
+    "p138_problem_space_hardcoded": true,
+    "p138_strategy_hardcoded": true,
+    "p138_value_baseline_hardcoded": true,
+    "p138_real_dicel_compile": false,
+    "p140_honest_negative": true
+  },
+  "outputs": {
+    "p137b_negative": true,
+    "p140_negative": true,
+    "p138_skipped_attacks": 2
+  },
+  "adversarial": {
+    "p134_arbitrary_hardcoded_label_passes_novel_check": true,
+    "p138_selection_changes_when_designer_scores_change": true
+  },
+  "criteria": {
+    "scripts_execute": true,
+    "hardcoded_candidate_free": false,
+    "independent_oracle": false,
+    "real_compiler_mutation": false,
+    "semantic_operator_invention": false,
+    "open_problem_discovery": false,
+    "measured_external_utility": false,
+    "honest_negative_controls": true,
+    "nontrivial_learning_cycle": false,
+    "real_patch_compile_test_compare": false,
+    "generated_reports_syntax_valid": false
+  },
+  "criteria_pass": 2,
+  "criteria_total": 11,
+  "final_status": "SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS"
+}

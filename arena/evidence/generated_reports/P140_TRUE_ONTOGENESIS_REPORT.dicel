@@ -1,0 +1,29 @@
+@AUDIT:P140_TRUE_ONTOGENESIS_REPORT:v1.0.0
+
+timestamp="2026-08-09T19:51:55.460Z"
+@PROTOCOL {
+  normalizer_provided=false
+  mapping_provided=false
+  category_furnished=false
+  pressure="raw_compression_and_prediction_only"
+}
+
+@PHENOMENA {
+  ~Fenom{id:"open_close", structure:"defer(x.close);x.open();guard(x)"}
+  ~Fenom{id:"alloc_free", structure:"defer(m.free);m.alloc();guard(m)"}
+  ~Fenom{id:"lock_unlock", structure:"defer(mu.Unlock);mu.Lock();guard(mu)"}
+  ~Fenom{id:"session_bind", structure:"defer(sess.release);sess.acquire();guard(sess)"}
+}
+
+@RAW_DISTANCE_MATRIX {
+  ~Pair{ids:"open_close~alloc_free", distance:0.75}
+  ~Pair{ids:"open_close~lock_unlock", distance:0.75}
+  ~Pair{ids:"open_close~session_bind", distance:0.75}
+  avg=0.750
+}
+
+@RESULT {
+  category_emerged_without_furnished_equivalence=false
+  interpretation="NO_CATEGORY_WITHOUT_FURNISHED_EQUIVALENCE"
+  note="Sem qualquer normalizador ou mapeamento fornecido, a distancia crua entre estruturas permanece alta (open/alloc/lock nao sao reconhecidos como equivalentes). Portanto, categoria de 2a ordem NAO emerge apenas de compressao bruta neste desenho."
+}

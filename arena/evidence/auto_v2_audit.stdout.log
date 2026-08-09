@@ -1,0 +1,25 @@
+{
+  "pass": 2,
+  "total": 11,
+  "status": "SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS",
+  "checks": {
+    "p129_pre_authored": true,
+    "p130_circular": true,
+    "p130_stub": true,
+    "p134_source_and_oracle_same_constant": true,
+    "p134_circular_future": true,
+    "p134_label_hardcoded": true,
+    "p134_operator_not_compiled": true,
+    "p137b_honest": true,
+    "p138_problem_space_hardcoded": true,
+    "p138_strategy_hardcoded": true,
+    "p138_value_baseline_hardcoded": true,
+    "p138_real_dicel_compile": false,
+    "p140_honest_negative": true
+  },
+  "outputs": {
+    "p137b_negative": true,
+    "p140_negative": true,
+    "p138_skipped_attacks": 2
+  }
+}

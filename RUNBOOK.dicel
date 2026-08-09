@@ -39,3 +39,5 @@
 ^STEP30:auto_improvement_audit=P119+P121+P129+P130!independent_adversarial_checks
 ^STEP31:auto_improvement_verdict=SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT
 ^STEP32:replacement_spec=arena/AUTO_IMPROVEMENT_REQUIRED_PIPELINE.dicel
+^STEP33:auto_improvement_reaudit=P134+P137B+P138+P140!read_generated_reports
+^STEP34:auto_improvement_v2_verdict=SIMULATION_WITH_USEFUL_NEGATIVE_CONTROLS
