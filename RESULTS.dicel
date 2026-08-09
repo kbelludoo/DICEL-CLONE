@@ -558,3 +558,93 @@
 ~EvidenceHash{path:"arena/ARENA_UPDATE_20M_RESULTS.json",sha256:"7b4b5ec58bd90421e24d6f872d0d8c4d622d6d4a53c638c890f53e6949a49e59"}
 ~EvidenceHash{path:"arena/latest_compiler_stress_20m.mjs",sha256:"6ce0d67e2de61d94ba20b7a4425570b836cb1a2a5afc54a7ccf717a538d72bfd"}
 ~EvidenceHash{path:"arena/latest_compiler_worker.mjs",sha256:"254cafd699e7bb8a5b52a934b9be976bd20514b9d6d8cad3f55d2d563e71c816"}
+
+~StressAuditResult{
+  id:"CYCLE-0005",
+  duration_ms:1500119,
+  probes:70965,
+  compile_pass:66269,
+  compile_fail:4696,
+  runtime_tests:63934,
+  runtime_pass:63934,
+  runtime_fail:0,
+  confirmed_findings:11,
+  false_positives:0,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_FIXED_25M_REPORT.dicel",
+  status:"UPSTREAM_FIXES_VERIFIED_RESIDUAL_GAPS_CONFIRMED"
+}
+
+~SuggestionResolution{
+  suggestion_id:str,
+  upstream_commit:str,
+  verification:str,
+  status:str
+}
+
+~SuggestionResolution{suggestion_id:"SUG-0022",upstream_commit:"c26bd292",verification:"binary_minus_709_minus_604_equals_105!stress_runtime_divergence_zero",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0023",upstream_commit:"c26bd292",verification:"subtraction_and_division_chains_left_associative!stress_runtime_divergence_zero",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0024",upstream_commit:"c26bd292",verification:"11666_unsupported_feature_emissions_remain",status:"OPEN"}
+~SuggestionResolution{suggestion_id:"SUG-0025",upstream_commit:"c26bd292",verification:"type_mismatch_2351!missing_return_2335",status:"OPEN"}
+~SuggestionResolution{suggestion_id:"SUG-0026",upstream_commit:"c26bd292",verification:"unknown_type_2313",status:"OPEN"}
+~SuggestionResolution{suggestion_id:"SUG-0027",upstream_commit:"c26bd292",verification:"division_whitespace_diagnostics_4823",status:"OPEN"}
+
+~ImprovementSuggestion{
+  id:"SUG-0028",
+  loop:9,
+  area:"parser",
+  evidence:"arena/ARENA_FIXED_RESIDUAL_SOLUTIONS.dicel:SOL-0001",
+  problem:"relational_operators_and_division_without_spaces_are_not_normalized_into_typed_AST",
+  proposed_change:"apply_arena/solutions/residual_fix.patch_parser_hunk",
+  validation:"targeted_10_cases!70965_solution_replay!zero_findings",
+  priority:"high",
+  status:"solution_validated"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0029",
+  loop:9,
+  area:"semantic_emitter_boundary",
+  evidence:"arena/ARENA_FIXED_RESIDUAL_SOLUTIONS.dicel:SOL-0002",
+  problem:"unknown_IR_is_warning_and_raw_target_code_is_emitted",
+  proposed_change:"unknown_expression_error!skip_emitter_when_not_ok!never_emit_e_raw",
+  validation:"70965_solution_replay!11695_controlled_rejections!zero_target_for_invalid_cases",
+  priority:"critical",
+  status:"solution_validated"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0030",
+  loop:9,
+  area:"typechecker",
+  evidence:"arena/ARENA_FIXED_RESIDUAL_SOLUTIONS.dicel:SOL-0003",
+  problem:"unknown_types_return_mismatch_and_missing_return_are_not_errors",
+  proposed_change:"apply_contract_type_and_return_completeness_checks",
+  validation:"targeted_rejections!70965_solution_replay!zero_findings",
+  priority:"high",
+  status:"solution_validated"
+}
+
+~suggestion_loop_v5:SuggestionLoopSummary{
+  loops:9,
+  suggestions:30,
+  critical:10,
+  high:14,
+  medium:6,
+  low:0,
+  source_verified:true,
+  next:"submit_residual_fix_patch_upstream_then_repeat_seed_260825_without_local_patch"
+}
+
+~SolutionReplayResult{
+  patch_ref:"arena/solutions/residual_fix.patch",
+  targeted_cases:10,
+  replay_probes:70965,
+  compile_pass:59270,
+  controlled_rejection:11695,
+  runtime_tests:59270,
+  runtime_pass:59270,
+  runtime_fail:0,
+  findings:0,
+  status:"PASS_LOCAL_PATCH_VALIDATION"
+}

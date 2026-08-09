@@ -20,3 +20,7 @@
 ^STEP14:download_upstream=codeload_dicel-unified@249091e7!16_new_commits
 ^STEP15:updated_stress_20m=node_arena/latest_compiler_stress_20m.mjs!duration_1200000!seed_260820
 ^STEP16:report_updated=arena/ARENA_UPDATE_20M_REPORT.dicel!fixes_applied_zero!append_RESULTS.dicel
+^STEP17:download_corrections=codeload_dicel-unified@c26bd292
+^STEP18:fixed_stress_25m=node_arena/fixed_compiler_stress_25m.mjs!duration_1500000!seed_260825
+^STEP19:solution_patch=arena/solutions/residual_fix.patch!targeted_10_cases
+^STEP20:solution_replay=70965_probes!runtime_fail_0!findings_0

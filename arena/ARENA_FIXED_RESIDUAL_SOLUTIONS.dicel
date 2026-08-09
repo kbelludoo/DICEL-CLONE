@@ -1,0 +1,102 @@
+@DICE-L:arena-fixed-residual-solutions:1.0.0;upstream=c26bd292;status=PATCH_VALIDATED_NOT_UPSTREAM
+
+~CorrectionVerification{
+  id:str,
+  prior_gap:str,
+  test:str,
+  expected:str,
+  actual:str,
+  status:str
+}
+
+~CorrectionVerification{id:"FIX-VERIFY-0001",prior_gap:"subtraction_left_associativity",test:"635-432-9",expected:"194",actual:"194",status:"FIXED_UPSTREAM"}
+~CorrectionVerification{id:"FIX-VERIFY-0002",prior_gap:"division_left_associativity",test:"301/819/18",expected:"0.020417853751187084",actual:"0.020417853751187084",status:"FIXED_UPSTREAM"}
+~CorrectionVerification{id:"FIX-VERIFY-0003",prior_gap:"binary_minus_silent_miscompile",test:"709-604",expected:"105",actual:"105",status:"FIXED_UPSTREAM"}
+~CorrectionVerification{id:"FIX-VERIFY-0004",prior_gap:"modulo",test:"10_mod_3",expected:"1",actual:"1",status:"FIXED_UPSTREAM"}
+~CorrectionVerification{id:"FIX-VERIFY-0005",prior_gap:"shift_left",test:"5_shift_left_2",expected:"20",actual:"20",status:"FIXED_UPSTREAM"}
+~CorrectionVerification{id:"FIX-VERIFY-0006",prior_gap:"bitwise_and",test:"5_and_3",expected:"1",actual:"1",status:"FIXED_UPSTREAM"}
+
+~ResidualGap{
+  id:str,
+  category:str,
+  probes:num,
+  problem:str,
+  solution_ref:str,
+  status:str
+}
+
+~ResidualGap{id:"RESIDUAL-0001",category:"division_whitespace",probes:4823,problem:"a_div_b_without_spaces_becomes_unknown_expression_warning",solution_ref:"SOL-0001",status:"CONFIRMED"}
+~ResidualGap{id:"RESIDUAL-0002",category:"relational_raw_passthrough",probes:4667,problem:"less_greater_less_equal_greater_equal_are_emitted_from_unknown_raw_IR",solution_ref:"SOL-0001+SOL-0002",status:"CONFIRMED"}
+~ResidualGap{id:"RESIDUAL-0003",category:"ternary_relational_raw_passthrough",probes:1302,problem:"ternary_condition_relational_expression_remains_unknown_but_target_executes",solution_ref:"SOL-0001+SOL-0002",status:"CONFIRMED"}
+~ResidualGap{id:"RESIDUAL-0004",category:"missing_return",probes:2335,problem:"non_void_function_without_return_compiles",solution_ref:"SOL-0003",status:"CONFIRMED"}
+~ResidualGap{id:"RESIDUAL-0005",category:"unknown_type",probes:2313,problem:"unknown_return_type_warning_does_not_block_target",solution_ref:"SOL-0003",status:"CONFIRMED"}
+~ResidualGap{id:"RESIDUAL-0006",category:"return_type_mismatch",probes:2351,problem:"num_function_returning_string_compiles",solution_ref:"SOL-0003",status:"CONFIRMED"}
+
+~Solution{
+  id:str,
+  files:str,
+  change:str,
+  validation:str,
+  replay_probes:num,
+  replay_findings:num,
+  replay_runtime_fail:num,
+  status:str
+}
+
+~Solution{
+  id:"SOL-0001",
+  files:"scripts/pipeline/lib/parser.mjs",
+  change:"add_relational_precedence_group!longest_operator_first!avoid_relational_match_inside_shifts!parse_division_without_whitespace_dependency",
+  validation:"targeted_regression_10_cases!solution_replay_seed_260825",
+  replay_probes:70965,
+  replay_findings:0,
+  replay_runtime_fail:0,
+  status:"PATCH_VALIDATED"
+}
+
+~Solution{
+  id:"SOL-0002",
+  files:"scripts/pipeline/lib/semantic.mjs+dicel_compiler.mjs",
+  change:"unknown_expression_is_error!compiler_skips_TS_JS_emission_when_parse_or_semantic_fails",
+  validation:"unsupported_features_become_controlled_rejection!generated_hash_empty_on_rejection",
+  replay_probes:70965,
+  replay_findings:0,
+  replay_runtime_fail:0,
+  status:"PATCH_VALIDATED"
+}
+
+~Solution{
+  id:"SOL-0003",
+  files:"scripts/pipeline/lib/semantic.mjs",
+  change:"unknown_contract_type_is_error!infer_literal_binary_unary_ternary_type!validate_return_assignability!require_non_void_return",
+  validation:"string_to_num_rejected!missing_return_rejected!Mystery_type_rejected!valid_operator_matrix_pass",
+  replay_probes:70965,
+  replay_findings:0,
+  replay_runtime_fail:0,
+  status:"PATCH_VALIDATED"
+}
+
+~ValidationSummary{
+  upstream_commit:"c26bd2928a4e8976156fe0a33862945747c6f2a1",
+  stress_duration_ms:1500119,
+  stress_probes:70965,
+  stress_runtime_fail:0,
+  residual_findings:11,
+  patch_file:"arena/solutions/residual_fix.patch",
+  targeted_cases:10,
+  solution_replay_probes:70965,
+  solution_replay_compile_pass:59270,
+  solution_replay_controlled_rejection:11695,
+  solution_replay_runtime_pass:59270,
+  solution_replay_runtime_fail:0,
+  solution_replay_findings:0,
+  compiler_files_modified_upstream:0,
+  final_status:"SOLUTION_VALIDATED_AWAITING_UPSTREAM_APPLICATION"
+}
+
+~EvidenceHash{path:"arena/ARENA_FIXED_25M_REPORT.dicel",sha256:"e9b69c29f7bbe3443782681f121acd6262304099d3f42d1d1fee2424835e6cf2"}
+~EvidenceHash{path:"arena/ARENA_FIXED_25M_RESULTS.json",sha256:"ddfd0b4392c2c6aa0c0a780f4679ec8100330c8c604e694ba0fdb87418ac50c6"}
+~EvidenceHash{path:"arena/solutions/residual_fix.patch",sha256:"cb19b30ff2e33be56c606d583d9523aa1fc014fb7145b8cebd0cdc3975537099"}
+~EvidenceHash{path:"arena/SOLUTION_REPLAY_REPORT.dicel",sha256:"cc9a2d46d0994d68f1f7db77f6bc88881187e6157d0c7397a53cbd32af33b81a"}
+~EvidenceHash{path:"arena/SOLUTION_REPLAY_RESULTS.json",sha256:"a127be7d41cdca85b42d0e36345fb62779c72391522477867fd65e04aa03c36e"}
+~EvidenceHash{path:"arena/evidence/solution_regression_results.jsonl",sha256:"d44c70aaf9c9a20a66ba04c021ccf420a7dbdf20f874a487522ff99fb49c91b0"}

@@ -110,3 +110,43 @@ RUNTIME_PASS=48795
 RUNTIME_FAIL=3279
 CONFIRMED_FINDINGS=25
 FIXES_APPLIED=0
+
+UPDATE_SOURCE=https://github.com/kbelludoo/dicel-unified
+PREVIOUS_UPSTREAM=249091e7e8ac24169e9fe91f431f004f94e3590a
+FIXED_UPSTREAM=c26bd2928a4e8976156fe0a33862945747c6f2a1
+DOWNLOAD_METHOD=https_codeload_tarball
+DOWNLOAD_STATUS=PASS
+
+COMMAND=node arena/fixed_compiler_stress_25m.mjs --duration-ms=1500000 --delay-ms=20 --seed=260825 --latest=/tmp/dicel-fixed --output=arena --report=ARENA_FIXED_25M_REPORT.dicel --json=ARENA_FIXED_25M_RESULTS.json
+EXIT=0
+DURATION_MS=1500119
+PROBES=70965
+COMPILE_PASS=66269
+COMPILE_FAIL=4696
+RUNTIME_TESTS=63934
+RUNTIME_PASS=63934
+RUNTIME_FAIL=0
+RESIDUAL_FINDINGS=11
+FIXES_APPLIED_TO_UPSTREAM=0
+
+COMMAND=targeted_regression_10_cases_against_local_solution_patch
+EXIT=0
+PASS=10
+FAIL=0
+RESULTS=arena/evidence/solution_regression_results.jsonl
+
+COMMAND=node arena/solution_replay.mjs --duration-ms=600000 --max-probes=70965 --delay-ms=2 --seed=260825 --latest=/tmp/dicel-solution
+EXIT=0
+DURATION_MS=183766
+PROBES=70965
+COMPILE_PASS=59270
+CONTROLLED_REJECTION=11695
+RUNTIME_PASS=59270
+RUNTIME_FAIL=0
+FINDINGS=0
+PATCH_STATUS=VALIDATED_NOT_APPLIED_UPSTREAM
+
+COMMAND=patch --batch -p3 --dry-run < arena/solutions/residual_fix.patch
+EXIT=0
+FILES=parser.mjs!semantic.mjs!dicel_compiler.mjs
+STATUS=PATCH_APPLIES_CLEANLY_TO_c26bd292

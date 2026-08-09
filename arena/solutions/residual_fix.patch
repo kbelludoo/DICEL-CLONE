@@ -1,0 +1,129 @@
+--- /tmp/dicel-fixed/scripts/pipeline/lib/parser.mjs	2026-08-09 04:25:48.000000000 +0000
++++ /tmp/dicel-solution/scripts/pipeline/lib/parser.mjs	2026-08-09 04:57:07.330474185 +0000
+@@ -311,6 +311,7 @@
+     ['^'],
+     ['&'],
+     ['===', '!==', '==', '!='],
++    ['<=', '>=', '<', '>'],
+     ['<<', '>>'],
+     ['+', '-'],
+     ['*', '/', '%']
+@@ -347,8 +348,11 @@
+             if ((op === '+' || op === '-') && (i === 0 || /[\s+\-*/%=!&|^<>]/.test(s[i - 1]))) {
+               continue;
+             }
++            // Evita reconhecer < ou > dentro de <<, >>, <=, >=
++            if (op === '<' && (s[i - 1] === '<' || s[i + 1] === '<' || s[i + 1] === '=')) continue;
++            if (op === '>' && (s[i - 1] === '>' || s[i + 1] === '>' || s[i + 1] === '=')) continue;
+             // Evita falso positivo de regex literal /pattern/flags para a barra /
+-            if (op === '/' && (i === 0 || !/\s/.test(s[i - 1]) || !/\s/.test(s[i + 1]))) {
++            if (op === '/' && i === 0) {
+               continue;
+             }
+             return {
+--- /tmp/dicel-fixed/scripts/pipeline/lib/semantic.mjs	2026-08-09 04:25:48.000000000 +0000
++++ /tmp/dicel-solution/scripts/pipeline/lib/semantic.mjs	2026-08-09 04:56:55.486474185 +0000
+@@ -24,19 +24,19 @@
+   for (const s of ir.structs) {
+     for (const f of s.fields) {
+       if (!KNOWN_TYPES.has(f.type)) {
+-        diagnostics.push({ severity: 'warn', message: `struct ${s.name} field ${f.name}: unknown type "${f.type}"` });
++        diagnostics.push({ severity: 'error', message: `struct ${s.name} field ${f.name}: unknown type "${f.type}"` });
+       }
+     }
+   }
+ 
+   for (const f of ir.fns) {
+     if (!KNOWN_TYPES.has(baseType(f.returnType))) {
+-      diagnostics.push({ severity: 'warn', message: `fn ${f.name}: unknown return type "${f.returnType}"` });
++      diagnostics.push({ severity: 'error', message: `fn ${f.name}: unknown return type "${f.returnType}"` });
+     }
+     const declared = new Set(f.params.map((p) => p.name));
+     for (const p of f.params) {
+       if (!KNOWN_TYPES.has(p.type)) {
+-        diagnostics.push({ severity: 'warn', message: `fn ${f.name} param ${p.name}: unknown type "${p.type}"` });
++        diagnostics.push({ severity: 'error', message: `fn ${f.name} param ${p.name}: unknown type "${p.type}"` });
+       }
+     }
+     for (const s of f.stmts) {
+@@ -48,6 +48,11 @@
+         checkExpr(s.expr, declared, fnNames, f.name, diagnostics);
+       } else if (s.kind === 'return') {
+         checkExpr(s.expr, declared, fnNames, f.name, diagnostics);
++        const expectedType = normalizeType(baseType(f.returnType));
++        const actualType = inferExprType(s.expr);
++        if (expectedType !== 'any' && actualType !== 'any' && expectedType !== actualType) {
++          diagnostics.push({ severity: 'error', message: `fn ${f.name}: return type mismatch expected ${expectedType} got ${actualType}` });
++        }
+       } else if (s.kind === 'while') {
+         checkExpr(s.cond, declared, fnNames, f.name, diagnostics);
+         for (const sub of s.body || []) {
+@@ -60,6 +65,9 @@
+         }
+       }
+     }
++    if (baseType(f.returnType) !== 'void' && !f.stmts.some((s) => s.kind === 'return')) {
++      diagnostics.push({ severity: 'error', message: `fn ${f.name}: non-void function missing return` });
++    }
+   }
+ 
+   return { ok: !diagnostics.some((d) => d.severity === 'error'), diagnostics };
+@@ -97,7 +105,7 @@
+   } else if (expr.kind === 'member') {
+     diagnostics.push({ severity: 'warn', message: `${caller}: member access "${expr.raw}" outside subset (gap)` });
+   } else if (expr.kind === 'unknown') {
+-    diagnostics.push({ severity: 'warn', message: `${caller}: cannot type expression "${expr.raw}"` });
++    diagnostics.push({ severity: 'error', message: `${caller}: cannot type expression "${expr.raw}"` });
+   }
+ }
+ 
+@@ -107,4 +115,30 @@
+ 
+ export function _knownTypes() {
+   return [...KNOWN_TYPES];
+-}
+\ No newline at end of file
++}
++function normalizeType(t) {
++  if (['int', 'num', 'float', 'number'].includes(t)) return 'number';
++  if (['str', 'string'].includes(t)) return 'string';
++  if (['bool', 'boolean'].includes(t)) return 'boolean';
++  return t === 'void' ? 'void' : t === 'any' ? 'any' : 'any';
++}
++
++function inferExprType(expr) {
++  if (!expr) return 'void';
++  if (expr.kind === 'literal') {
++    if (expr.type === 'int' || expr.type === 'float') return 'number';
++    if (expr.type === 'str') return 'string';
++    if (expr.type === 'bool') return 'boolean';
++    if (expr.type === 'null') return 'null';
++  }
++  if (expr.kind === 'binary') {
++    if (['===', '!==', '==', '!=', '<', '>', '<=', '>=', '&&', '||'].includes(expr.op)) return 'boolean';
++    return 'number';
++  }
++  if (expr.kind === 'unary') return expr.op === '!' ? 'boolean' : 'number';
++  if (expr.kind === 'ternary') {
++    const a = inferExprType(expr.then), b = inferExprType(expr.else);
++    return a === b ? a : 'any';
++  }
++  return 'any';
++}
+--- /tmp/dicel-fixed/scripts/pipeline/lib/dicel_compiler.mjs	2026-08-09 04:25:48.000000000 +0000
++++ /tmp/dicel-solution/scripts/pipeline/lib/dicel_compiler.mjs	2026-08-09 04:56:55.486474185 +0000
+@@ -14,10 +14,11 @@
+ export function compile(source) {
+   const parsed = parse(source);
+   const semantic = check(parsed);
+-  const ts = toTs(parsed);
+-  const js = emitJs(parsed);
++  const ok = parsed.errors.length === 0 && semantic.ok;
++  const ts = ok ? toTs(parsed) : '';
++  const js = ok ? emitJs(parsed) : '';
+   return {
+-    ok: parsed.errors.length === 0 && semantic.ok,
++    ok,
+     ir: parsed,
+     diagnostics: [...parsed.errors.map((e) => ({ severity: 'error', ...e })), ...semantic.diagnostics],
+     ts,
