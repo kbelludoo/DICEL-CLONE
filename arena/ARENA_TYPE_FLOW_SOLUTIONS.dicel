@@ -1,0 +1,30 @@
+@DICE-L:arena-type-flow-solutions:1.0.0;upstream=664f6ba;status=PROPOSED_FROM_EXECUTION_EVIDENCE
+
+~FlowSolution{
+  id:str,
+  gaps:str,
+  files:str,
+  change:str,
+  validation:str,
+  priority:str,
+  status:str
+}
+
+~FlowSolution{id:"FLOW-SOL-0001",gaps:"FLOW-GAP-0007+FLOW-GAP-0011",files:"semantic.mjs",change:"function_signature_map_includes_parameter_and_return_types!validate_argument_assignability!infer_call_return_type",validation:"wrong_argument_and_wrong_callee_return_rejected!valid_calls_pass",priority:"critical",status:"proposed"}
+~FlowSolution{id:"FLOW-SOL-0002",gaps:"FLOW-GAP-0001+FLOW-GAP-0003+FLOW-GAP-0006+FLOW-GAP-0009",files:"parser.mjs+semantic.mjs",change:"preserve_struct_literal_field_list!reject_duplicate_missing_extra_fields!validate_field_value_types",validation:"valid_struct_roundtrip!all_invalid_shapes_rejected",priority:"high",status:"proposed"}
+~FlowSolution{id:"FLOW-SOL-0003",gaps:"FLOW-GAP-0005+FLOW-GAP-0008",files:"semantic.mjs",change:"constant_fold_numeric_expression_for_safety!reject_non_safe_integer_result_or_require_explicit_bigint_u64",validation:"boundary_operations_safe!overflow_add_multiply_rejected",priority:"high",status:"proposed"}
+~FlowSolution{id:"FLOW-SOL-0004",gaps:"FLOW-GAP-0002+FLOW-GAP-0012",files:"parser.mjs+semantic.mjs",change:"require_loop_bound_and_decreasing_measure!reject_true_infinite_loop!prove_bounded_counter_or_require_annotation",validation:"infinite_loop_rejected!annotated_bounded_loop_pass",priority:"critical",status:"proposed"}
+~FlowSolution{id:"FLOW-SOL-0005",gaps:"FLOW-GAP-0004+FLOW-GAP-0010+FLOW-GAP-0014",files:"semantic.mjs",change:"typed_builtin_signature_registry_for_Number_Math_parseInt_and_other_globals!validate_argument_and_result_domain",validation:"string_to_numeric_builtins_rejected_or_typed_Result!valid_builtin_calls_pass",priority:"high",status:"proposed"}
+~FlowSolution{id:"FLOW-SOL-0006",gaps:"FLOW-GAP-0013",files:"semantic.mjs",change:"constant_fold_divisor_expression!reject_provably_zero_divisor",validation:"one_div_one_minus_one_rejected!nonzero_expression_pass",priority:"high",status:"proposed"}
+
+~FlowSummary{
+  stress_duration_ms:900036,
+  probes:42911,
+  invalid_program_accepted:25630,
+  runtime_tests:15171,
+  runtime_fail:0,
+  unique_findings:14,
+  upstream_push_commit:"664f6ba",
+  solutions:6,
+  status:"NEW_TYPE_FLOW_GAPS_CONFIRMED"
+}

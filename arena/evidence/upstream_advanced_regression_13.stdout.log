@@ -1,0 +1,14 @@
+PASS strict_loose_eq_mixed_rejected
+PASS strict_loose_neq_mixed_rejected
+PASS same_type_eq
+PASS direct_recursion
+PASS mutual_recursion
+PASS numeric_if
+PASS numeric_while
+PASS escaped_quote
+PASS comma_in_string_arg
+PASS nested_call
+PASS mixed_relational
+PASS unreachable
+PASS boolean_if
+{"pass":13,"fail":0,"total":13}

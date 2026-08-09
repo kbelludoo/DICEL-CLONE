@@ -18,7 +18,7 @@ for await(const line of rl){
     const expected=p.runtimeExpectedSpecial==='-0'?-0:p.runtimeExpected;
     const mod=await import(`data:text/javascript;base64,${Buffer.from(c.js+'\nexport { test };').toString('base64')}#${p.id}`);
     const actual=await mod.test(...(p.args??[]));
-    r.runtime=true;r.runtime_actual=actual;r.runtime_expected=expected;r.runtime_expected_special=p.runtimeExpectedSpecial;r.runtime_equal=Object.is(actual,expected);
+    r.runtime=true;r.runtime_actual=actual;r.runtime_expected=expected;r.runtime_expected_special=p.runtimeExpectedSpecial;r.runtime_equal=(actual&&expected&&typeof actual==='object'&&typeof expected==='object')?JSON.stringify(actual)===JSON.stringify(expected):Object.is(actual,expected);
    }catch(e){r.runtime=false;r.runtime_equal=false;r.runtime_error=String(e instanceof Error?e.message:e)}
   }
   process.stdout.write(JSON.stringify(r)+'\n');

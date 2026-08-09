@@ -853,3 +853,43 @@
 ~EvidenceHash{path:"arena/ARENA_ADVANCED_20M_REPORT.dicel",sha256:"673ed2124f033772e7b209d0a6cb3450db2571413919cc400128564767aa81ad"}
 ~EvidenceHash{path:"arena/ARENA_ADVANCED_20M_RESULTS.json",sha256:"9f89b718972c18d5cea3ea898390353a7d44610f08b4884f6cc6bfbe13815b82"}
 ~EvidenceHash{path:"arena/ARENA_ADVANCED_SOLUTIONS.dicel",sha256:"0b87f2378b16e54f6ffedd2ef05c865b7df16d58ed20b054c99bb92a1963e2de"}
+
+~UpstreamPush{
+  source_commit:"8a8039fed2e4c3feed291d3a3694939ce28fc598",
+  pushed_commit:"664f6ba",
+  files_changed:"package.json+parser.mjs+semantic.mjs+emitter.mjs+advanced_semantic_regression.mjs",
+  regression_cases:27,
+  differential_cases:12,
+  prepush_replay_probes:56805,
+  prepush_replay_findings:0,
+  status:"PUSHED_TO_DICEL_UNIFIED_MASTER"
+}
+
+~StressAuditResult{
+  id:"CYCLE-0008",
+  duration_ms:900036,
+  probes:42911,
+  compile_pass:40801,
+  compile_fail:2110,
+  runtime_tests:15171,
+  runtime_pass:15171,
+  runtime_fail:0,
+  confirmed_findings:14,
+  false_positives:0,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_TYPE_FLOW_15M_REPORT.dicel",
+  status:"POST_PUSH_TYPE_FLOW_GAPS_CONFIRMED"
+}
+
+~ImprovementSuggestion{id:"SUG-0041",loop:12,area:"call_types",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0001",problem:"function_calls_validate_arity_but_not_argument_or_return_types",proposed_change:"typed_function_signature_map_and_call_type_inference",validation:"wrong_arg_and_wrong_call_return_rejected",priority:"critical",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0042",loop:12,area:"struct_literals",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0002",problem:"struct_literals_accept_wrong_missing_extra_and_duplicate_fields",proposed_change:"shape_and_field_type_validation",validation:"invalid_shapes_rejected!valid_struct_pass",priority:"high",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0043",loop:12,area:"numeric_overflow",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0003",problem:"safe_literals_can_produce_unsafe_integer_results",proposed_change:"constant_fold_and_safe_range_check_or_explicit_u64",validation:"overflow_add_multiply_rejected",priority:"high",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0044",loop:12,area:"loop_termination",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0004",problem:"infinite_and_unproven_loops_are_accepted",proposed_change:"bound_and_decreasing_measure_contract",validation:"infinite_rejected!bounded_verified",priority:"critical",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0045",loop:12,area:"builtin_types",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0005",problem:"builtin_calls_lack_argument_and_result_domain_validation",proposed_change:"typed_builtin_signature_registry",validation:"invalid_builtin_args_rejected!valid_calls_pass",priority:"high",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0046",loop:12,area:"constant_folding",evidence:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel:FLOW-SOL-0006",problem:"derived_zero_divisor_is_not_detected",proposed_change:"constant_fold_divisor_and_reject_provable_zero",validation:"one_div_one_minus_one_rejected",priority:"high",status:"proposed_verified_evidence"}
+
+~suggestion_loop_v8:SuggestionLoopSummary{loops:12,suggestions:46,critical:15,high:24,medium:7,low:0,source_verified:true,next:"fix_call_types_and_loop_termination_then_replay_seed_260902"}
+
+~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_15M_REPORT.dicel",sha256:"1656b636a04da8bc8c43ad2feb85caa2d326e276c94547244991f82ca1038287"}
+~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_15M_RESULTS.json",sha256:"800eacf5041f1512e4c937eaee970b73505fd0ab25d4ef9c049aa8207595a7d9"}
+~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel",sha256:"77dfec94c8ffc62253143d0564dcc37370906a4a83f6b7eaab6937d90cda4926"}

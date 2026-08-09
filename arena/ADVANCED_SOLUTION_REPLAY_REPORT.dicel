@@ -1,0 +1,10 @@
+@DICE-L:arena-advanced-stress:1.0.0;duration_ms=85788;status=completed
+~StressSummary{probes:56805,compile_pass:29913,compile_fail:26892,runtime_tests:29913,runtime_pass:29913,runtime_fail:0,unique_findings:0,fixes_applied:0}
+~PhaseCount{phase:"P11_CALL_NESTING",count:11497}
+~PhaseCount{phase:"P12_CONTROL_FLOW",count:11287}
+~PhaseCount{phase:"P13_ASSIGNMENT",count:11233}
+~PhaseCount{phase:"P14_STRINGS",count:11182}
+~PhaseCount{phase:"P15_RUNTIME",count:11606}
+~CategoryCount{category:"compile_pass",count:29913}
+~CategoryCount{category:"controlled_rejection",count:26892}
+~Changelog{duration_ms:85788,probes:56805,findings:0,fixes_applied:0}

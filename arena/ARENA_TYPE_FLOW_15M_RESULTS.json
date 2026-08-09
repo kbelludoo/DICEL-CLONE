@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "upstream_commit": "664f6ba",
+  "seed": 260902,
+  "duration_requested_ms": 900000,
+  "duration_actual_ms": 900036,
+  "probes": 42911,
+  "compile_pass": 40801,
+  "compile_fail": 2110,
+  "runtime_tests": 15171,
+  "runtime_pass": 15171,
+  "runtime_fail": 0,
+  "family_stats": {
+    "P17_STRUCTS": 8618,
+    "P19_LOOPS": 8528,
+    "P20_BUILTINS": 8610,
+    "P18_NUMERIC": 8468,
+    "P16_CALL_TYPES": 8687
+  },
+  "phase_stats": {
+    "compiled": 40801,
+    "semantic": 2110
+  },
+  "category_stats": {
+    "invalid_program_accepted": 25630,
+    "compile_pass": 15171,
+    "controlled_rejection": 2110
+  },
+  "unique_findings": [
+    {
+      "id": "FLOW-GAP-0001",
+      "hash": "e742236df9f959d4",
+      "category": "invalid_program_accepted",
+      "family": "P17_STRUCTS",
+      "name": "wrong_field_type",
+      "source": "struct Box {\n value:num\n}\nfn$test()->Box {\n return Box { value: \"x\" }\n}\n",
+      "result": {
+        "id": 1,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "4bc7bbfe6a49cde1ab8f0cf6615b6c546ba2123833456efd31471152cf4b7b50",
+        "js_sha256": "a697e2ea7f5994838e1a8e7edc15557bceed2fdbc38919187eab9b1b2b9a132b",
+        "elapsed_ms": 3.777078000000003
+      },
+      "count": 1709
+    },
+    {
+      "id": "FLOW-GAP-0002",
+      "hash": "4ae1c0fe77cb76e9",
+      "category": "invalid_program_accepted",
+      "family": "P19_LOOPS",
+      "name": "bounded_counter",
+      "source": "fn$test()->num {\n let$x = 0\n while x<3 { x = x+1 }\n return x\n}\n",
+      "result": {
+        "id": 2,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "b07c7d2417f7f8c114ea607f74d5cc56771a157adc04593eeade88c683bc67c4",
+        "js_sha256": "43ba8606bbaf4de7ad6453050743d8fc617600355a3cf080f976aded8ad9317e",
+        "elapsed_ms": 1.1772929999999917
+      },
+      "count": 2132
+    },
+    {
+      "id": "FLOW-GAP-0003",
+      "hash": "c759bb501e40d046",
+      "category": "invalid_program_accepted",
+      "family": "P17_STRUCTS",
+      "name": "extra_field",
+      "source": "struct Box {\n value:num\n}\nfn$test()->Box {\n return Box { value: 1, extra: 73 }\n}\n",
+      "result": {
+        "id": 3,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "84dcda5db09a19cff434f4c3d0b2c0689e3b7109731635212889c0c4e94b3b78",
+        "js_sha256": "3776dcaa0ad1e44d68a953334a70af611fc2c73ee7d6dcc9595d537937450425",
+        "elapsed_ms": 0.5449639999999931
+      },
+      "count": 1679
+    },
+    {
+      "id": "FLOW-GAP-0004",
+      "hash": "806d403106dcadf8",
+      "category": "invalid_program_accepted",
+      "family": "P20_BUILTINS",
+      "name": "isfinite_string",
+      "source": "fn$test()->bool {\n return Number.isFinite(\"1\")\n}\n",
+      "result": {
+        "id": 5,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "842110ac0aa015ca845e2729c150f103e2f94979aeca4219d6aeedea8c0a740a",
+        "js_sha256": "90acc728d477ebb4ad463002bf5c55afa28d7e9252de9d3bd80cc27086499826",
+        "elapsed_ms": 0.5941559999999981
+      },
+      "count": 1714
+    },
+    {
+      "id": "FLOW-GAP-0005",
+      "hash": "0a74351cd04756f7",
+      "category": "invalid_program_accepted",
+      "family": "P18_NUMERIC",
+      "name": "overflow_mul",
+      "source": "fn$test()->num {\n return 4503599627370496*2\n}\n",
+      "result": {
+        "id": 6,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "e42eb78f10881fc576b8dad139337fd4fe4ed0d92bd5642cba5b0b7e139a9fe5",
+        "js_sha256": "451ffce98088b800e48e5005ab54d32597aac316d918d8c56f6c5192c0170e8b",
+        "elapsed_ms": 0.41051400000000626
+      },
+      "count": 1716
+    },
+    {
+      "id": "FLOW-GAP-0006",
+      "hash": "111035831f37d793",
+      "category": "invalid_program_accepted",
+      "family": "P17_STRUCTS",
+      "name": "missing_field",
+      "source": "struct Box {\n value:num\n}\nfn$test()->Box {\n return Box { }\n}\n",
+      "result": {
+        "id": 13,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "d8eb85080e63b72c143b93a0fdf557c425259a6d91918d16df1e4a5688f3c45e",
+        "js_sha256": "fd377bb754e52e9d89fac626500779fe32ca37d9a60c1c3d30254a740399ab5a",
+        "elapsed_ms": 0.24709699999999657
+      },
+      "count": 1671
+    },
+    {
+      "id": "FLOW-GAP-0007",
+      "hash": "55d40529be644323",
+      "category": "invalid_program_accepted",
+      "family": "P16_CALL_TYPES",
+      "name": "wrong_call_return",
+      "source": "fn$get()->str {\n return \"x\"\n}\nfn$test()->num {\n return get()\n}\n",
+      "result": {
+        "id": 16,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "015b6261ed8afa2803b2312ca8a4b5f6c4ca12e188581de211af4c1565386c9f",
+        "js_sha256": "b35d0a52e9eada6ad9f3c44381cc7965de33a9f3f4c05a5eb160b13535f2d4c1",
+        "elapsed_ms": 0.2656200000000126
+      },
+      "count": 2113
+    },
+    {
+      "id": "FLOW-GAP-0008",
+      "hash": "a0471511ff8e3f92",
+      "category": "invalid_program_accepted",
+      "family": "P18_NUMERIC",
+      "name": "overflow_add",
+      "source": "fn$test()->num {\n return 9007199254740991+1\n}\n",
+      "result": {
+        "id": 22,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "120b4a1fe2e4fdf09a45ceef90083128e3b0d878e0120687a59e0497507fd1d4",
+        "js_sha256": "30e717da1aa6fe7a063fe8af7dd372199010aaef94c9659ec9e90fbf9d47c26c",
+        "elapsed_ms": 0.30508700000001454
+      },
+      "count": 1704
+    },
+    {
+      "id": "FLOW-GAP-0009",
+      "hash": "da98f6fc3240763a",
+      "category": "invalid_program_accepted",
+      "family": "P17_STRUCTS",
+      "name": "duplicate_literal_field",
+      "source": "struct Box {\n value:num\n}\nfn$test()->Box {\n return Box { value: 10, value: 57 }\n}\n",
+      "result": {
+        "id": 23,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "5c2c1609d91501cac07f04f12448f9823c52d21523bce948257e1f9086f6b1c2",
+        "js_sha256": "0e97799491cf7fe09416a655d057cf2512cf527a9557b1a9a0dd1c02f053e5bd",
+        "elapsed_ms": 0.3167359999999917
+      },
+      "count": 1775
+    },
+    {
+      "id": "FLOW-GAP-0010",
+      "hash": "ad0e79ad0d8cece7",
+      "category": "invalid_program_accepted",
+      "family": "P20_BUILTINS",
+      "name": "math_max_wrong",
+      "source": "fn$test()->num {\n return Math.max(\"x\",1)\n}\n",
+      "result": {
+        "id": 38,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "cee8c3e32bd0bbd7dea750a818911d83377fcf6eda925942a1bbfa5652991bac",
+        "js_sha256": "5538ef2a7e42dc4005e4b4dc6c6e23847071d7cabc7488c6a9e4c36f51c8c7e9",
+        "elapsed_ms": 0.2406949999999597
+      },
+      "count": 1678
+    },
+    {
+      "id": "FLOW-GAP-0011",
+      "hash": "10ec35be3b2c4d35",
+      "category": "invalid_program_accepted",
+      "family": "P16_CALL_TYPES",
+      "name": "wrong_arg_type",
+      "source": "fn$id(x:num)->num {\n return x\n}\nfn$test()->num {\n return id(\"x\")\n}\n",
+      "result": {
+        "id": 43,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "789493328640cb54161f9ed96324ec7fe8935d5e134c9198ef189c413e4b0f80",
+        "js_sha256": "0cf2cb3e6f67b06d0840680b20f1be33266b23a521f2b9d55ab700d327077680",
+        "elapsed_ms": 0.23237599999993108
+      },
+      "count": 2159
+    },
+    {
+      "id": "FLOW-GAP-0012",
+      "hash": "02ce0d2961407b1a",
+      "category": "invalid_program_accepted",
+      "family": "P19_LOOPS",
+      "name": "infinite_true",
+      "source": "fn$test()->num {\n while true { }\n return 0\n}\n",
+      "result": {
+        "id": 46,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "5b1621ac86e14471ea3e594b6fd3fe49e96451745554bea2d9b3e376dc3dbb3c",
+        "js_sha256": "69c8fb4c029f9f1eb5cc0c3a0fb379d7aeb7478491215c1cccecdfd390f9c1ba",
+        "elapsed_ms": 0.21514600000000428
+      },
+      "count": 2121
+    },
+    {
+      "id": "FLOW-GAP-0013",
+      "hash": "75b8d0cdb8258a2c",
+      "category": "invalid_program_accepted",
+      "family": "P18_NUMERIC",
+      "name": "derived_zero_div",
+      "source": "fn$test()->num {\n return 1 / (1-1)\n}\n",
+      "result": {
+        "id": 50,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "04854e1ad25f26c8c507aa9103863ffd3bd2a9a5c7acba995b08ecaa00fe074d",
+        "js_sha256": "1f102f5c11b3893ef26d07907fa49949ea35636f7f0b29a7fcbc4ea2aefe6d9b",
+        "elapsed_ms": 0.3969770000001063
+      },
+      "count": 1660
+    },
+    {
+      "id": "FLOW-GAP-0014",
+      "hash": "3aaffd168abedae0",
+      "category": "invalid_program_accepted",
+      "family": "P20_BUILTINS",
+      "name": "parse_int_nan",
+      "source": "fn$test()->num {\n return parseInt(\"x\")\n}\n",
+      "result": {
+        "id": 70,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "3f9bd4578d3333aeb37d706c6f3b6424a15df74136eb910981ae41fa7dc1f8cd",
+        "js_sha256": "05acd57be906e5f7c68d515acf56e4849b45f13238a6363d7c8e5ac2a2ddc793",
+        "elapsed_ms": 0.21973300000013296
+      },
+      "count": 1799
+    }
+  ],
+  "worker_stderr": ""
+}

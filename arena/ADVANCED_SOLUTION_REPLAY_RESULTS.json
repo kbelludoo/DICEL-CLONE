@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "upstream_commit": "d388ee3_pending_push",
+  "seed": 260901,
+  "duration_requested_ms": 600000,
+  "duration_actual_ms": 85788,
+  "probes": 56805,
+  "compile_pass": 29913,
+  "compile_fail": 26892,
+  "runtime_tests": 29913,
+  "runtime_pass": 29913,
+  "runtime_fail": 0,
+  "family_stats": {
+    "P12_CONTROL_FLOW": 11287,
+    "P11_CALL_NESTING": 11497,
+    "P14_STRINGS": 11182,
+    "P15_RUNTIME": 11606,
+    "P13_ASSIGNMENT": 11233
+  },
+  "phase_stats": {
+    "semantic": 26892,
+    "compiled": 29913
+  },
+  "category_stats": {
+    "controlled_rejection": 26892,
+    "compile_pass": 29913
+  },
+  "unique_findings": [],
+  "worker_stderr": ""
+}

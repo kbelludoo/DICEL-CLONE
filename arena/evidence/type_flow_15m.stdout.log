@@ -1,0 +1,12 @@
+{
+  "report": "/tmp/DICEL-CLONE/arena/ARENA_TYPE_FLOW_15M_REPORT.dicel",
+  "json": "/tmp/DICEL-CLONE/arena/ARENA_TYPE_FLOW_15M_RESULTS.json",
+  "probes": 42911,
+  "findings": 14,
+  "compilePass": 40801,
+  "compileFail": 2110,
+  "runtimeTests": 15171,
+  "runtimePass": 15171,
+  "runtimeFail": 0,
+  "durationMs": 900036
+}
