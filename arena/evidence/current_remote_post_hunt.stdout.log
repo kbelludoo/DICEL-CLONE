@@ -1,0 +1,12 @@
+{
+  "report": "/tmp/DICEL-CLONE/arena/CURRENT_REMOTE_QUICK.dicel",
+  "json": "/tmp/DICEL-CLONE/arena/CURRENT_REMOTE_QUICK.json",
+  "probes": 232,
+  "findings": 10,
+  "compilePass": 177,
+  "compileFail": 55,
+  "runtimeTests": 130,
+  "runtimePass": 119,
+  "runtimeFail": 11,
+  "durationMs": 5018
+}

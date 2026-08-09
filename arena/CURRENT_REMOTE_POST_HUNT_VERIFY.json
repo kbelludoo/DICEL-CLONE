@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "upstream_commit": "d388ee3_pending_push",
+  "seed": 260901,
+  "duration_requested_ms": 5000,
+  "duration_actual_ms": 5018,
+  "probes": 232,
+  "compile_pass": 177,
+  "compile_fail": 55,
+  "runtime_tests": 130,
+  "runtime_pass": 119,
+  "runtime_fail": 11,
+  "family_stats": {
+    "P12_CONTROL_FLOW": 41,
+    "P11_CALL_NESTING": 39,
+    "P14_STRINGS": 57,
+    "P15_RUNTIME": 46,
+    "P13_ASSIGNMENT": 49
+  },
+  "phase_stats": {
+    "compiled": 177,
+    "semantic": 55
+  },
+  "category_stats": {
+    "invalid_program_accepted": 47,
+    "compile_pass": 119,
+    "valid_program_rejected": 17,
+    "controlled_rejection": 38,
+    "runtime_divergence": 11
+  },
+  "unique_findings": [
+    {
+      "id": "ADV-GAP-0001",
+      "hash": "303893fbfbfcc6de",
+      "category": "invalid_program_accepted",
+      "family": "P12_CONTROL_FLOW",
+      "name": "numeric_while",
+      "source": "fn$test()->num {\n let$x = 0\n while 1 { x = x+1 }\n return x\n}\n",
+      "result": {
+        "id": 1,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "e4f42e0f553dabdf81b41645215760796a2621c46737eed7e001c5c3739bb52b",
+        "js_sha256": "2925236e6a2ceed41974f6426c705ec345229f3f2f272f4d839b508d2d91b15b",
+        "elapsed_ms": 4.8644490000000005
+      },
+      "count": 8
+    },
+    {
+      "id": "ADV-GAP-0002",
+      "hash": "8968c3367f43e358",
+      "category": "valid_program_rejected",
+      "family": "P14_STRINGS",
+      "name": "escaped_quote",
+      "source": "fn$test()->str {\n return \"a\\\"b\"\n}\n",
+      "result": {
+        "id": 4,
+        "compile": false,
+        "phase": "semantic",
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "test: cannot type expression \"\"a\\\"b\"\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "js_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_ms": 0.32206499999999494
+      },
+      "count": 8
+    },
+    {
+      "id": "ADV-GAP-0003",
+      "hash": "357a30c65d0f5f0f",
+      "category": "valid_program_rejected",
+      "family": "P14_STRINGS",
+      "name": "comma_argument",
+      "source": "fn$echo(x:str)->str {\n return x\n}\nfn$test()->str {\n return echo(\"a,b\")\n}\n",
+      "result": {
+        "id": 20,
+        "compile": false,
+        "phase": "semantic",
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "test: arity mismatch for echo expected 1 got 2"
+          },
+          {
+            "severity": "error",
+            "message": "test: cannot type expression \"\"a\""
+          },
+          {
+            "severity": "error",
+            "message": "test: cannot type expression \"b\"\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "js_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_ms": 0.35753199999999197
+      },
+      "count": 9
+    },
+    {
+      "id": "ADV-GAP-0004",
+      "hash": "4637bd8613f76412",
+      "category": "invalid_program_accepted",
+      "family": "P12_CONTROL_FLOW",
+      "name": "unreachable",
+      "source": "fn$test()->num {\n return 36\n let$x = 26\n}\n",
+      "result": {
+        "id": 24,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "ef7b5986d750323501f6a279ad25c8c8960e8eb92d5ca1c5efa975c4f4b8c922",
+        "js_sha256": "c09b3e1b39777c7d7e2430fe9fb464e760be76b1971916fed53c15526e9fe543",
+        "elapsed_ms": 0.280811999999969
+      },
+      "count": 12
+    },
+    {
+      "id": "ADV-GAP-0005",
+      "hash": "6bc5b5815faab245",
+      "category": "invalid_program_accepted",
+      "family": "P12_CONTROL_FLOW",
+      "name": "numeric_if",
+      "source": "fn$test()->num {\n if (1) return 10\n return 0\n}\n",
+      "result": {
+        "id": 26,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "03e6ba0278f0c14c6c10892d9caa01d59bc6bf75f53ddd833396e5b0f2899f40",
+        "js_sha256": "bf2d1565e42e8ef79319b473d7de7283069346b94902bd843bf9faba64480d11",
+        "elapsed_ms": 0.3239620000000514
+      },
+      "count": 4
+    },
+    {
+      "id": "ADV-GAP-0006",
+      "hash": "4b758ea2ed825c1d",
+      "category": "invalid_program_accepted",
+      "family": "P11_CALL_NESTING",
+      "name": "direct_recursion",
+      "source": "fn$test()->num {\n return test()\n}\n",
+      "result": {
+        "id": 31,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "190422b9867706de40ee5cd9698ee8eecccc898d5379be895daf65bf2b8928b9",
+        "js_sha256": "755bfed6d0ed283be15418fcab3328694bb5b664306ce8995f14587d7d24aa5c",
+        "elapsed_ms": 0.2841590000000451
+      },
+      "count": 9
+    },
+    {
+      "id": "ADV-GAP-0007",
+      "hash": "6a23a2508f8d1d69",
+      "category": "invalid_program_accepted",
+      "family": "P15_RUNTIME",
+      "name": "mixed_relational",
+      "source": "fn$test()->bool {\n return 1<\"2\"\n}\n",
+      "result": {
+        "id": 33,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "5c1d77f7ffad2ba2dc248aa2b6f0cd7d77c39b77cbd55b7cce4487a5103cee9d",
+        "js_sha256": "3aca4eb7d6c9d5ca9071cd5cd5c2c88117c0d76f85b74a3dbb7975b2d561cf68",
+        "elapsed_ms": 0.34490900000002966
+      },
+      "count": 5
+    },
+    {
+      "id": "ADV-GAP-0008",
+      "hash": "49eb3e45d95f48b8",
+      "category": "invalid_program_accepted",
+      "family": "P11_CALL_NESTING",
+      "name": "mutual_recursion",
+      "source": "fn$a()->num {\n return b()\n}\nfn$b()->num {\n return a()\n}\nfn$test()->num {\n return a()\n}\n",
+      "result": {
+        "id": 42,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "3896f91a0b48088c6039b7bec1cf6880d60d490b0239ed9b192acf32cc9b1979",
+        "js_sha256": "3245273a91b2672b86257b9720125076ae341137f3831e764d876560145c097b",
+        "elapsed_ms": 0.25347099999999045
+      },
+      "count": 9
+    },
+    {
+      "id": "ADV-GAP-0009",
+      "hash": "c6d05a2de07b304c",
+      "category": "runtime_divergence",
+      "family": "P15_RUNTIME",
+      "name": "loose_neq",
+      "source": "fn$test()->bool {\n return 1!=\"1\"\n}\n",
+      "result": {
+        "id": 56,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "c02e207efc4583d6cdde1305d588ea030ae674b719f86b83bc6d28dbe247b0b7",
+        "js_sha256": "c7ad5ad0b862130839fa8f523807583f03685b7ef2c7e46c36d1b5fa73aa030c",
+        "elapsed_ms": 0.3230269999999109,
+        "runtime": true,
+        "runtime_actual": false,
+        "runtime_expected": true,
+        "runtime_equal": false
+      },
+      "count": 9
+    },
+    {
+      "id": "ADV-GAP-0010",
+      "hash": "1c394108d3d4f354",
+      "category": "runtime_divergence",
+      "family": "P15_RUNTIME",
+      "name": "loose_eq",
+      "source": "fn$test()->bool {\n return 1==\"1\"\n}\n",
+      "result": {
+        "id": 183,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "83931d8cf15b05777dbb8cbc4a1c7766b4cc969de0fb7cb2d171ce3198ef10db",
+        "js_sha256": "88f713209ba493a1288914c280606612090c5c7f8bf8c00909146e01c1d8ac81",
+        "elapsed_ms": 0.14997700000003533,
+        "runtime": true,
+        "runtime_actual": true,
+        "runtime_expected": false,
+        "runtime_equal": false
+      },
+      "count": 2
+    }
+  ],
+  "worker_stderr": ""
+}
