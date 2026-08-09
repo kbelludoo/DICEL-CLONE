@@ -260,3 +260,26 @@ CONTROLLED_REJECTION=18714
 RUNTIME_PASS=10180
 RUNTIME_FAIL=0
 FINDINGS=0
+
+TARGET_HEAD=e59c84b66c23abb95338162d5deefd7c6000dcc2
+COMMAND=node scripts/pipeline/p119_continuous_evolution.mjs
+EXIT=0
+COMMAND=node scripts/pipeline/p121_independent_learning_discovery.mjs
+EXIT=0
+COMMAND=node scripts/pipeline/p129_recursive_meta_evolution.mjs
+EXIT=0
+COMMAND=node scripts/pipeline/p130_meta_governance.mjs
+EXIT=0
+
+COMMAND=node arena/auto_improvement_utility_audit.mjs --target /tmp/dicel-current --out arena
+EXIT=0
+CRITERIA_PASS=1
+CRITERIA_TOTAL=8
+P130_ZERO_MUTANT_CIRCULAR_ORACLE_PASS=true
+P130_INDEPENDENT_ORACLE_MISMATCHES=5
+P129_V01_EXTERNAL_ERROR=0
+P129_V02_EXTERNAL_ERROR=2e300
+P119_CYCLES=2
+P119_UNIQUE_BEHAVIORS=1
+P121_BANANA_FALSE_NOVELTY_RATE=1
+FINAL_STATUS=SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT

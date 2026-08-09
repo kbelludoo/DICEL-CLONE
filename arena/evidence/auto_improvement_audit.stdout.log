@@ -1,0 +1,8 @@
+{
+  "criteria_pass": 1,
+  "criteria_total": 8,
+  "status": "SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT",
+  "p130_mutant_pass": true,
+  "p130_independent_mismatches": 5,
+  "p121_false_novelty": 1
+}

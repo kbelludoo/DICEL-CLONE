@@ -941,3 +941,33 @@
 
 ~EvidenceHash{path:"arena/ARENA_POSTPUSH_10M_REPORT.dicel",sha256:"be7f096f498a8e5ab34822bee3651033e17cad720632e930b37640c465c1cf08"}
 ~EvidenceHash{path:"arena/ARENA_POSTPUSH_10M_RESULTS.json",sha256:"d8078ab6377f8c4cf89cb696564ee826b4fa9115dcea0c36313b1ffb18766106"}
+
+~AutoImprovementAuditResult{
+  id:"CYCLE-0010",
+  target_commit:"e59c84b66c23abb95338162d5deefd7c6000dcc2",
+  suites:"P119+P121+P129+P130",
+  scripts_executed:4,
+  scripts_exit_zero:4,
+  criteria_pass:1,
+  criteria_total:8,
+  autonomous_candidate_generation:false,
+  real_compiler_self_modification:false,
+  independent_oracle:false,
+  external_heldout_gain:false,
+  semantic_discovery:false,
+  final_status:"SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT",
+  report_ref:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel"
+}
+
+~ImprovementSuggestion{id:"SUG-0047",loop:13,area:"auto_candidate_generation",evidence:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel:AUTO-001",problem:"mechanism_candidate_is_pre_authored_and_labeled_self_proposed",proposed_change:"generate_candidate_only_after_real_failure_discovery_and_store_generator_trace",validation:"candidate_absent_before_failure!reproducible_generation",priority:"critical",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0048",loop:13,area:"oracle_independence",evidence:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel:AUTO-002",problem:"operator_expected_values_are_computed_by_same_function_under_test",proposed_change:"independent_oracle_implementation_or_frozen_external_vectors",validation:"zero_function_mutant_fails_oracle",priority:"critical",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0049",loop:13,area:"real_self_modification",evidence:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel:AUTO-003",problem:"invented_operator_compiler_probe_is_identity_stub_and_no_compiler_file_is_modified",proposed_change:"apply_generated_patch_in_isolated_worktree_compile_execute_compare_then_commit",validation:"real_diff+target_behavior+heldout_pass",priority:"critical",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0050",loop:13,area:"novelty_detection",evidence:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel:AUTO-006",problem:"keyword_presence_is_classified_as_novel_operator",proposed_change:"require_executable_semantic_delta_and_cross_domain_transfer",validation:"banana_operator_text_does_not_count_as_discovery",priority:"high",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0051",loop:13,area:"rollback",evidence:"P129_delta.rollback_string_only",problem:"rollback_is_metadata_string_not_executed_repository_restore",proposed_change:"git_worktree_snapshot_apply_test_reset_and_tree_hash_verification",validation:"failed_candidate_restores_identical_tree_hash",priority:"high",status:"proposed_verified_evidence"}
+~ImprovementSuggestion{id:"SUG-0052",loop:13,area:"causal_utility",evidence:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.json:p129_external_utility",problem:"hardcoded_objective_rewards_clamp_while_external_preservation_metric_regresses",proposed_change:"ablation_against_no_change_and_random_patch_with_predeclared_external_metric",validation:"positive_heldout_effect_size_and_zero_regression",priority:"high",status:"proposed_verified_evidence"}
+
+~suggestion_loop_v9:SuggestionLoopSummary{loops:13,suggestions:52,critical:18,high:27,medium:7,low:0,source_verified:true,next:"replace_simulations_with_real_worktree_patch_loop"}
+
+~EvidenceHash{path:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.dicel",sha256:"9606797c9567fd43508a0806eecb3dcf2f1d1ea04fb8123d74c7559828525657"}
+~EvidenceHash{path:"arena/AUTO_IMPROVEMENT_UTILITY_AUDIT.json",sha256:"30cd009603c6bdb52bc4726ebe830db6d3e4e2034ab567257238cd9c5b6e8d24"}
+~EvidenceHash{path:"arena/AUTO_IMPROVEMENT_REQUIRED_PIPELINE.dicel",sha256:"512bb036ba8e6e081efcf0356ea08db6ad8daf5388578ee7794d70496d1d0ad8"}

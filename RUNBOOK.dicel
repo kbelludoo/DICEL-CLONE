@@ -36,3 +36,6 @@
 ^STEP30:type_flow_report=arena/ARENA_TYPE_FLOW_15M_REPORT.dicel!append_RESULTS.dicel
 ^STEP28:push_type_flow_fix=dicel-unified@b2ecde5!21_typeflow!14_deep!12_differential
 ^STEP29:postpush_search=type_flow_stress!duration_600000!seed_260903!findings_0
+^STEP30:auto_improvement_audit=P119+P121+P129+P130!independent_adversarial_checks
+^STEP31:auto_improvement_verdict=SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT
+^STEP32:replacement_spec=arena/AUTO_IMPROVEMENT_REQUIRED_PIPELINE.dicel

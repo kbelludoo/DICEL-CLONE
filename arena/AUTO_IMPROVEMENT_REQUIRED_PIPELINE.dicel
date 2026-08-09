@@ -1,0 +1,33 @@
+@DICE-L:auto-improvement-required-pipeline:1.0.0;status=REPLACEMENT_SPEC
+
+~AutoImprovementGate{
+  stage:str,
+  requirement:str,
+  evidence:str,
+  fail_action:str
+}
+
+~AutoImprovementGate{stage:"discover",requirement:"derive_failure_from_real_compiler_test_or_runtime_mismatch",evidence:"reproducer_source+stdout+stderr+seed",fail_action:"reject_cycle"}
+~AutoImprovementGate{stage:"propose",requirement:"generate_patch_after_failure_without_pre_authored_candidate",evidence:"unified_diff+generator_trace",fail_action:"reject_candidate"}
+~AutoImprovementGate{stage:"isolate",requirement:"apply_patch_in_clean_git_worktree",evidence:"base_commit+patch_hash+tree_hash",fail_action:"rollback_worktree"}
+~AutoImprovementGate{stage:"compile",requirement:"run_real_parser_semantic_emitter",evidence:"compiler_exit+target_hash",fail_action:"reject_candidate"}
+~AutoImprovementGate{stage:"test",requirement:"run_regression_and_hidden_heldout_suites",evidence:"baseline_vs_candidate_metrics+independent_expected",fail_action:"reject_candidate"}
+~AutoImprovementGate{stage:"ablate",requirement:"compare_candidate_against_no_change_and_random_patch_baselines",evidence:"effect_size+false_positive_rate",fail_action:"mark_no_causal_gain"}
+~AutoImprovementGate{stage:"govern",requirement:"immutable_external_evaluator_and_identity_constraints",evidence:"evaluator_hash_before_after",fail_action:"reject_candidate"}
+~AutoImprovementGate{stage:"publish",requirement:"only_commit_when_all_gates_pass",evidence:"commit_hash+signed_result_chain",fail_action:"no_push"}
+
+~SuccessCriteria{
+  autonomous_candidates_min:10,
+  real_patches_applied_min:1,
+  heldout_gain_gt:0,
+  regressions:0,
+  independent_oracle:true,
+  compiler_mutation:true,
+  reproducible_from_clean_clone:true
+}
+
+^CURRENT_P119=hardcoded_gap!hardcoded_rule!duplicate_cycles
+^CURRENT_P121=keyword_scan!lexical_false_novelty
+^CURRENT_P129=pre_authored_mechanism!hardcoded_expected
+^CURRENT_P130=circular_oracle!stub_operator
+^VERDICT=replace_demo_simulation_with_worktree_patch_validation_loop

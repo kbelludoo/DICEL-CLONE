@@ -1,0 +1,82 @@
+{
+  "target_head": "e59c84b66c23abb95338162d5deefd7c6000dcc2",
+  "runs": {
+    "p119": {
+      "exit": 0,
+      "stdout_sha256": "06f58695c6891868eb198904f6eb2503e863afd6fb3369eeccc778b6f3ea533e",
+      "stderr": ""
+    },
+    "p121": {
+      "exit": 0,
+      "stdout_sha256": "d1b7db279df4c4e1fedc76ad98a357d0f54547c9fb74b66d47c04eefd6a42b88",
+      "stderr": ""
+    },
+    "p129": {
+      "exit": 0,
+      "stdout_sha256": "a764ef7b57dd5d11c80c00bba521aa1402dd4cc8fa1a35f9bac644739b6656e8",
+      "stderr": ""
+    },
+    "p130": {
+      "exit": 0,
+      "stdout_sha256": "8766f8f0cb518ee4f2ee31ccd3a253238a714a555eed9e7f2edf6bdcb75cf4c0",
+      "stderr": ""
+    }
+  },
+  "static_checks": {
+    "p129_mechanism_hardcoded": true,
+    "p129_expected_hardcoded": true,
+    "p129_real_compiler_mutation": false,
+    "p130_candidates_hardcoded": true,
+    "p130_circular_oracle": true,
+    "p130_operator_stub": true,
+    "p119_gap_hardcoded": true,
+    "p119_rule_hardcoded": true,
+    "p121_lexical_marker_scan": true,
+    "p121_real_compile_or_test": false
+  },
+  "p130_adversarial": {
+    "mutant_circular_oracle_pass": true,
+    "independent_oracle_mismatches": 5,
+    "independent_expected": [
+      2166572391,
+      2147483648,
+      3906250,
+      3389012890,
+      2147483647
+    ]
+  },
+  "p129_external_utility": {
+    "inputs": [
+      "1e300",
+      "-1e300",
+      "42",
+      "-0"
+    ],
+    "v01_error": 0,
+    "v02_error": 2e+300
+  },
+  "p119_cycle_novelty": {
+    "cycles": 2,
+    "unique_behaviors": 1
+  },
+  "p121_false_positive": {
+    "sandbox_exit": 0,
+    "novel_operator_discovery_rate": 1,
+    "novel_candidates": [
+      "discover banana_operator"
+    ]
+  },
+  "criteria": {
+    "scripts_execute": true,
+    "autonomous_candidate_generation": false,
+    "real_compiler_self_modification": false,
+    "independent_oracle": false,
+    "external_heldout_improvement": false,
+    "nontrivial_cycle_novelty": false,
+    "semantic_discovery_not_keyword_scan": false,
+    "real_compile_execute_compare": false
+  },
+  "criteria_pass": 1,
+  "criteria_total": 8,
+  "final_status": "SIMULATION_ONLY_NOT_REAL_AUTO_IMPROVEMENT"
+}
