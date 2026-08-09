@@ -43,3 +43,15 @@ STDOUT=evidence/adler32.compile.stdout.log
 STDERR=evidence/adler32.compile.stderr.log
 RESULT=!01_expected_token_got_65521
 SOLUTION=add_arithmetic_operator_grammar_and_precedence
+
+COMMAND=python3 tools/improvement_loop.py --compiler /tmp/dicel-compiler --zlib /tmp/zlib-source --results RESULTS.dicel
+EXIT=0
+STDOUT=evidence/improvement_loop.stdout.log
+STDERR=evidence/improvement_loop.stderr.log
+RESULT=3_loops_9_new_suggestions
+
+COMMAND=python3 tools/improvement_loop.py --compiler /tmp/dicel-compiler --zlib /tmp/zlib-source --results RESULTS.dicel
+EXIT=0
+STDOUT=evidence/improvement_loop_rerun.stdout.log
+STDERR=evidence/improvement_loop_rerun.stderr.log
+RESULT=0_new_suggestions_deduplicated

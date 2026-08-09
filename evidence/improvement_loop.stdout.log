@@ -1,0 +1,28 @@
+{
+  "loops": 3,
+  "new_suggestions": 9,
+  "ids": [
+    "SUG-0001",
+    "SUG-0002",
+    "SUG-0003",
+    "SUG-0004",
+    "SUG-0005",
+    "SUG-0006",
+    "SUG-0007",
+    "SUG-0008",
+    "SUG-0009"
+  ],
+  "evidence": {
+    "errcode": 20,
+    "lbracket": 34,
+    "percent": 230,
+    "parse_for": 108,
+    "parse_expr": 157,
+    "binary_emit": 81,
+    "num_map": 26,
+    "base": 10,
+    "nmax": 11,
+    "buffer": 61,
+    "combine_shift": 149
+  }
+}

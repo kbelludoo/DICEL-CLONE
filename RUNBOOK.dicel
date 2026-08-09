@@ -10,3 +10,5 @@
 ^STEP5:compare=stdout_byte_equal!sha256_equal
 ^STEP6:adler_attempt=compile!capture_!01!record_parser_gap
 ^RESULTS:append_all_cycles_to_RESULTS.dicel
+^STEP7:improvement_loop=python3_tools/improvement_loop.py!three_evidence_scans!append_RESULTS.dicel
+^STEP8:dedup=rerun_loop!expected_new_suggestions_zero

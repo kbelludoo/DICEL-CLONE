@@ -114,3 +114,145 @@
 ^NEXT:parser_gap=arithmetic_operator_support
 ^NEXT:module=adler32Byte
 ^NEXT:success_gate=compiler_pass!generated_target!c_reference_vectors!output_hash_equality
+
+~ImprovementSuggestion{
+  id:str,
+  loop:num,
+  area:str,
+  evidence:str,
+  problem:str,
+  proposed_change:str,
+  validation:str,
+  priority:str,
+  status:str
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0001",
+  loop:1,
+  area:"lexer",
+  evidence:"exec-lexer.ts:20+34",
+  problem:"ErrCode_and_LBracket_share_numeric_token_28",
+  proposed_change:"assign_unique_token_ids!add_enum_uniqueness_test!fail_compiler_boot_on_collision",
+  validation:"enumerate_TokenType_values!assert_unique!run_28_conformance_cases",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0002",
+  loop:1,
+  area:"lexer",
+  evidence:"exec-lexer.ts:230+exec-stmt-parser.ts:108",
+  problem:"percent_token_is_unconditionally_dispatched_as_for_loop",
+  proposed_change:"introduce_Modulo_token_or_loop_lookahead_percent_identifier_in!preserve_for_syntax",
+  validation:"parse_percent_for_loop!parse_numeric_modulo!reject_ambiguous_percent_sequence",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0003",
+  loop:1,
+  area:"lexer",
+  evidence:"exec-lexer.ts:309+318",
+  problem:"readErrCode_method_defined_twice",
+  proposed_change:"remove_duplicate_method!enable_no_duplicate_class_members!add_error_code_lexer_vectors",
+  validation:"typescript_noEmit!lexer_error_code_snapshot!conformance_28",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0004",
+  loop:2,
+  area:"parser",
+  evidence:"exec-stmt-parser.ts:157",
+  problem:"expression_parser_supports_only_equality_and_inequality_binary_ops",
+  proposed_change:"add_precedence_layers_unary_multiplicative_additive_shift_relational_equality",
+  validation:"golden_ast_for_plus_minus_star_slash_modulo_shift_and_parentheses",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0005",
+  loop:2,
+  area:"emitter",
+  evidence:"stmt-ts.ts:81",
+  problem:"binary_emitter_maps_every_non_equality_operator_to_not_equal",
+  proposed_change:"define_typed_operator_map!emit_each_supported_operator!reject_unknown_operator",
+  validation:"compile_operator_matrix!execute_node_vectors!compare_expected_values",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0006",
+  loop:2,
+  area:"exec_ir",
+  evidence:"adler32.c:61+11",
+  problem:"adler32_requires_index_access_while_loops_and_state_updates_not_represented",
+  proposed_change:"add_index_expr!while_stmt!assignment_stmt_or_ssa_lowering!compound_assignment_lowering",
+  validation:"port_adler32Byte_then_adler32_z!compile!execute_reference_vectors",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0007",
+  loop:3,
+  area:"types",
+  evidence:"emitter.ts:26+adler32.c:10+149",
+  problem:"num_to_javascript_number_lacks_u32_overflow_and_bitwise_contract",
+  proposed_change:"add_u8_u32_u64_primitives!define_wrap_semantics!emit_unsigned_coercions_per_target",
+  validation:"boundary_vectors_0_255_65521_2pow32minus1!c_vs_target_hash_equality",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0008",
+  loop:3,
+  area:"diagnostics",
+  evidence:"evidence/adler32.compile.stderr.log:1",
+  problem:"unsupported_modulo_reports_generic_expected_token_error",
+  proposed_change:"emit_typed_UnsupportedOperator_diagnostic_with_operator_span_and_capability_hint",
+  validation:"adler_attempt_error_code_snapshot!no_generic_parse_error_for_known_operator",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0009",
+  loop:3,
+  area:"validation",
+  evidence:"RESULTS.dicel:CYCLE-0001+CYCLE-0002",
+  problem:"full_module_attempt_before_operator_capability_gate_wastes_cycles",
+  proposed_change:"add_capability_probe_matrix_before_port!order_modules_by_required_features!append_results_only_after_execution",
+  validation:"zlibVersion_pass!adler32Byte_gate!adler32_z_deferred_until_required_capabilities_pass",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~SuggestionLoopSummary{
+  loops:num,
+  suggestions:num,
+  critical:num,
+  high:num,
+  medium:num,
+  low:num,
+  source_verified:bool,
+  next:str
+}
+
+~suggestion_loop:SuggestionLoopSummary{
+  loops:3,
+  suggestions:9,
+  critical:4,
+  high:3,
+  medium:2,
+  low:0,
+  source_verified:true,
+  next:"implement_SUG_0001_to_SUG_0005_then_recompile_adler32Byte"
+}
