@@ -67,3 +67,27 @@ EXIT=0
 STDOUT=evidence/improvement_loop_v2_rerun.stdout.log
 STDERR=evidence/improvement_loop_v2_rerun.stderr.log
 RESULT=0_new_suggestions_deduplicated
+
+COMMAND=node arena/compiler_stress_25m.mjs --duration-ms=1500000 --delay-ms=20 --seed=260809 --compiler=/tmp/dicel-compiler --tsx=/tmp/audit-tools/node_modules/.bin/tsx --typescript=/tmp/audit-tools/node_modules/typescript/lib/typescript.js --output=arena
+EXIT=0
+DURATION_MS=1500098
+PROBES=68575
+COMPILE_PASS=37738
+COMPILE_FAIL=30837
+RAW_RUNTIME_FAIL=2
+FINDINGS=473
+FIXES_APPLIED=0
+
+HARNESS_AUDIT=negative_zero_json_serialization
+FALSE_POSITIVES=2
+SOLUTION=encode_special_numeric_expected_values_out_of_band
+
+COMMAND=node arena/compiler_stress_25m.mjs --duration-ms=900000 --max-probes=68575 --delay-ms=2 --seed=260809 --compiler=/tmp/dicel-compiler --tsx=/tmp/audit-tools/node_modules/.bin/tsx --typescript=/tmp/audit-tools/node_modules/typescript/lib/typescript.js --output=arena --report=ARENA_REPLAY_AUDITED.dicel --json=ARENA_REPLAY_AUDITED.json
+EXIT=0
+DURATION_MS=252762
+PROBES=68575
+RUNTIME_TESTS=34287
+RUNTIME_PASS=34053
+RUNTIME_FAIL=234
+CONFIRMED_FINDINGS=489
+FIXES_APPLIED=0

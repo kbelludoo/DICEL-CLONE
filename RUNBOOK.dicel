@@ -14,3 +14,6 @@
 ^STEP8:dedup=rerun_loop!expected_new_suggestions_zero
 ^STEP9:improvement_loop_v2=python3_tools/improvement_loop_v2.py!loops_4_5_6!append_RESULTS.dicel
 ^STEP10:dedup_v2=rerun_loop_v2!expected_new_suggestions_zero
+^STEP11:arena_stress_25m=node_arena/compiler_stress_25m.mjs!duration_1500000!seed_260809
+^STEP12:differential_replay=same_seed!same_68575_probes!runtime_oracle_all_compiled_cases
+^STEP13:report=arena/ARENA_REPORT.dicel!fixes_applied_zero!append_RESULTS.dicel

@@ -1,0 +1,112 @@
+@DICE-L:arena-compiler-stress-report:1.0.0;mode=scientific_fuzz;status=COMPILER_GAPS_CONFIRMED
+
+~StressRun{
+  id:str,
+  duration_requested_ms:num,
+  duration_actual_ms:num,
+  seed:num,
+  probes:num,
+  compile_pass:num,
+  compile_fail:num,
+  runtime_tests:num,
+  runtime_pass:num,
+  runtime_fail:num,
+  unique_findings:num,
+  fixes_applied:num,
+  report_ref:str,
+  json_ref:str
+}
+
+~StressRun{
+  id:"RUN-25M-RAW",
+  duration_requested_ms:1500000,
+  duration_actual_ms:1500098,
+  seed:260809,
+  probes:68575,
+  compile_pass:37738,
+  compile_fail:30837,
+  runtime_tests:30071,
+  runtime_pass:30069,
+  runtime_fail:2,
+  unique_findings:473,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_RUN1_25M_RAW.dicel",
+  json_ref:"arena/ARENA_RUN1_25M_RAW.json"
+}
+
+~StressRun{
+  id:"RUN-DIFFERENTIAL-REPLAY",
+  duration_requested_ms:900000,
+  duration_actual_ms:252762,
+  seed:260809,
+  probes:68575,
+  compile_pass:37738,
+  compile_fail:30837,
+  runtime_tests:34287,
+  runtime_pass:34053,
+  runtime_fail:234,
+  unique_findings:489,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_FINDINGS_AUDITED.dicel",
+  json_ref:"arena/ARENA_REPLAY_AUDITED.json"
+}
+
+~HarnessFinding{
+  id:"HARNESS-0001",
+  symptom:"json_line_protocol_converted_negative_zero_expected_value_to_positive_zero",
+  affected_raw_findings:2,
+  solution:"encode_special_numeric_expected_values_out_of_band",
+  replay_status:"verified_removed_false_positive"
+}
+
+~GapCluster{
+  id:str,
+  category:str,
+  operator:str,
+  probes:num,
+  pass:num,
+  fail:num,
+  runtime_divergences:num,
+  impact:str,
+  status:str
+}
+
+~GapCluster{id:"GAP-OP-PLUS",category:"missing_operator",operator:"+",probes:6963,pass:0,fail:6963,runtime_divergences:0,impact:"zlib_adler_accumulation_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-MULTIPLY",category:"missing_operator",operator:"*",probes:4417,pass:0,fail:4417,runtime_divergences:0,impact:"zlib_checksum_math_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-MODULO",category:"token_collision",operator:"%",probes:4185,pass:0,fail:4185,runtime_divergences:0,impact:"zlib_BASE_reduction_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-SHIFT-L",category:"missing_operator",operator:"<<",probes:1548,pass:0,fail:1548,runtime_divergences:0,impact:"zlib_checksum_pack_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-SHIFT-R",category:"missing_operator",operator:">>",probes:1468,pass:0,fail:1468,runtime_divergences:0,impact:"zlib_checksum_unpack_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-BIT-AND",category:"missing_operator",operator:"&",probes:1544,pass:0,fail:1544,runtime_divergences:0,impact:"zlib_low_word_mask_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-BIT-OR",category:"missing_operator",operator:"|",probes:1530,pass:0,fail:1530,runtime_divergences:0,impact:"zlib_checksum_recombine_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-BIT-XOR",category:"missing_operator",operator:"^",probes:1505,pass:0,fail:1505,runtime_divergences:0,impact:"crc_family_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-OP-BIT-NOT",category:"missing_operator",operator:"~",probes:1528,pass:0,fail:1528,runtime_divergences:0,impact:"bitwise_algorithms_blocked",status:"confirmed"}
+~GapCluster{id:"GAP-BINARY-MINUS",category:"silent_miscompile",operator:"-",probes:234,pass:234,fail:0,runtime_divergences:234,impact:"compiler_returns_left_operand_and_discards_subtraction",status:"critical_confirmed"}
+~GapCluster{id:"GAP-BODY-VALIDATION",category:"phase_order",operator:"multiple",probes:30837,pass:0,fail:30837,runtime_divergences:0,impact:"typecheck_passes_then_emitter_discovers_body_syntax_failure",status:"confirmed"}
+
+~PhaseCoverage{phase:"P1_LEXICAL",probes:13671}
+~PhaseCoverage{phase:"P2_PARSER",probes:13746}
+~PhaseCoverage{phase:"P3_AST",probes:13690}
+~PhaseCoverage{phase:"P4_EMITTER",probes:13809}
+~PhaseCoverage{phase:"P5_RUNTIME",probes:13659}
+
+~EvidenceHash{path:"arena/ARENA_RUN1_25M_RAW.json",sha256:"cf4156304f143841046b2cb57d8a82a1c3fa74c57b5124a43e32e958a4e18feb"}
+~EvidenceHash{path:"arena/ARENA_RUN1_25M_RAW.dicel",sha256:"8da3b33add5f7ccf5b09695eb5c0e7cceb790fbdecf610a674beb44e337115e5"}
+~EvidenceHash{path:"arena/ARENA_REPLAY_AUDITED.json",sha256:"418ab6c4c4596b337b62c6ad90b15d9973cf102afa58ad160d23a3acc13f9f37"}
+~EvidenceHash{path:"arena/ARENA_FINDINGS_AUDITED.dicel",sha256:"8939fd51d38becf290dd68c4cfb8b10b26317f56498a181f99085cc7db2a3085"}
+~EvidenceHash{path:"arena/compiler_stress_25m.mjs",sha256:"6ca6f24fcf95ebc2006e51316d3dd200befea9d0c1c60f46fe369acba9a95521"}
+~EvidenceHash{path:"arena/compiler_worker.ts",sha256:"84df03d3998404e840bee470a71a77088b7b6ccf703423d9fdae348e4104154a"}
+
+~ArenaSummary{
+  raw_duration_ms:1500098,
+  raw_probes:68575,
+  replay_probes:68575,
+  confirmed_unique_findings:489,
+  compile_failures:30837,
+  confirmed_runtime_divergences:234,
+  false_positives_removed:2,
+  fixes_applied:0,
+  final_status:"COMPILER_GAPS_CONFIRMED"
+}
+
+^NEXT:block_release_until=binary_minus_silent_miscompile_fixed!body_validation_moved_to_typecheck!operator_matrix_supported
+^NEXT:rerun=identical_seed_260809!expected_runtime_divergence_0!expected_compile_fail_reduction

@@ -1,3 +1,5 @@
 evidence/zlib_version_original
 node_modules/
 *.tmp
+arena/tmp/
+arena/.cache/

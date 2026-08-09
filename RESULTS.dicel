@@ -411,3 +411,58 @@
   source_verified:true,
   next:"implement_body_validation_arithmetic_parser_operator_emitter_and_conformance_before_adler_retry"
 }
+
+~StressAuditResult{
+  id:str,
+  duration_ms:num,
+  probes:num,
+  compile_pass:num,
+  compile_fail:num,
+  runtime_tests:num,
+  runtime_pass:num,
+  runtime_fail:num,
+  confirmed_findings:num,
+  false_positives:num,
+  fixes_applied:num,
+  report_ref:str,
+  status:str
+}
+
+~stress_cycle_0003:StressAuditResult{
+  id:"CYCLE-0003",
+  duration_ms:1500098,
+  probes:68575,
+  compile_pass:37738,
+  compile_fail:30837,
+  runtime_tests:34287,
+  runtime_pass:34053,
+  runtime_fail:234,
+  confirmed_findings:489,
+  false_positives:2,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_REPORT.dicel",
+  status:"COMPILER_GAPS_CONFIRMED"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0022",
+  loop:7,
+  area:"parser_runtime_safety",
+  evidence:"arena/ARENA_REPORT.dicel:GAP-BINARY-MINUS",
+  problem:"binary_minus_is_silently_accepted_but_generated_target_returns_left_operand",
+  proposed_change:"parse_binary_minus_in_additive_precedence!reject_trailing_tokens_after_let_and_return!typecheck_body_before_emit",
+  validation:"replay_seed_260809!234_previous_divergences_become_correct_or_typed_failures!zero_silent_miscompile",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~suggestion_loop_v3:SuggestionLoopSummary{
+  loops:7,
+  suggestions:22,
+  critical:7,
+  high:10,
+  medium:5,
+  low:0,
+  source_verified:true,
+  next:"fix_SUG_0022_first_then_replay_68575_probes"
+}
