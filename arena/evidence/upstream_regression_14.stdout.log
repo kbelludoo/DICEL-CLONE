@@ -1,0 +1,15 @@
+PASS valid_call_arity
+PASS wrong_arity_zero
+PASS wrong_arity_two
+PASS duplicate_field
+PASS duplicate_params
+PASS duplicate_let
+PASS param_shadow
+PASS numeric_logical
+PASS null_to_num
+PASS division_zero
+PASS unsafe_integer
+PASS math_random
+PASS nan_literal
+PASS valid_boolean_logic
+{"pass":14,"fail":0,"total":14}

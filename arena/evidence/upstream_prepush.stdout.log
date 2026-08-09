@@ -1,0 +1,12 @@
+{
+  "report": "/tmp/DICEL-CLONE/arena/UPSTREAM_PREPUSH_REPLAY.dicel",
+  "json": "/tmp/DICEL-CLONE/arena/UPSTREAM_PREPUSH_REPLAY.json",
+  "probes": 70939,
+  "findings": 0,
+  "compilePass": 31330,
+  "compileFail": 39609,
+  "runtimeTests": 29556,
+  "runtimePass": 29556,
+  "runtimeFail": 0,
+  "durationMs": 114517
+}

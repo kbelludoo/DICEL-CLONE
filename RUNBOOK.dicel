@@ -28,3 +28,6 @@
 ^STEP22:deep_stress_25m=node_arena/deep_semantic_stress_25m.mjs!duration_1500000!seed_260830
 ^STEP23:deep_solution_patch=arena/solutions/deep_semantic_fix.patch
 ^STEP24:deep_solution_replay=70939_probes!runtime_fail_0!findings_0
+^STEP25:push_deep_fix=dicel-unified@d388ee3!14_regressions!70939_zero_findings
+^STEP26:advanced_stress_20m=node_arena/advanced_control_stress_20m.mjs!seed_260901
+^STEP27:advanced_report=arena/ARENA_ADVANCED_20M_REPORT.dicel!append_RESULTS.dicel

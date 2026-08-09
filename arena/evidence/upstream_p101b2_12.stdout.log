@@ -1,0 +1,20 @@
+[p101b2] adapter: ir_adapter_v0.2
+[p101b2] oracle : scripts/pipeline/demo/bridge/suite_010_oracle.mjs
+[p101b2] bridge source  = ../dicel-upstream-test/suite010-post/suite_010.bridge.dicel
+[p101b2]   units=10 unsupported=0
+[p101b2]   parser accept = true
+[p101b2]   semantic ok   = true
+[p101b2]   diff add(20,22) = 42  exp=42  -> PASS
+[p101b2]   diff add(1,-5) = -4  exp=-4  -> PASS
+[p101b2]   diff multiply(6,7) = 42  exp=42  -> PASS
+[p101b2]   diff double(21) = 42  exp=42  -> PASS
+[p101b2]   diff double(0) = 0  exp=0  -> PASS
+[p101b2]   diff triple(5) = 15  exp=15  -> PASS
+[p101b2]   diff sub(10,3) = 7  exp=7  -> PASS
+[p101b2]   diff compose(7,4) = 14  exp=14  -> PASS
+[p101b2]   diff inc(41) = 42  exp=42  -> PASS
+[p101b2]   diff dec(0) = -1  exp=-1  -> PASS
+[p101b2]   diff sum3(1,2,3) = 6  exp=6  -> PASS
+[p101b2]   diff nested(3) = 14  exp=14  -> PASS
+[p101b2] executed=12 runtime=true differential=true
+[p101b2] RESULT: PASS

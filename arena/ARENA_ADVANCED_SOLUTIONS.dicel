@@ -1,0 +1,85 @@
+@DICE-L:arena-advanced-solutions:1.0.0;upstream=d388ee3;status=PROPOSED_FROM_EXECUTION_EVIDENCE
+
+~AdvancedSolution{
+  id:str,
+  gaps:str,
+  files:str,
+  change:str,
+  validation:str,
+  priority:str,
+  status:str
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0001",
+  gaps:"ADV-GAP-0009+ADV-GAP-0010",
+  files:"parser.mjs+semantic.mjs+emitter.mjs",
+  change:"define_DICE_equality_as_strict!emit_triple_equals_and_not_triple_equals!reject_mixed_operand_types",
+  validation:"1_equals_string_1_false!1_not_equals_string_1_true!3296_prior_divergences_zero",
+  priority:"critical",
+  status:"proposed"
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0002",
+  gaps:"ADV-GAP-0006+ADV-GAP-0008",
+  files:"semantic.mjs",
+  change:"build_function_call_graph!reject_self_cycle_and_SCC_without_explicit_bound_or_fixpoint",
+  validation:"direct_and_mutual_recursion_controlled_rejection!acyclic_nested_calls_pass",
+  priority:"critical",
+  status:"proposed"
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0003",
+  gaps:"ADV-GAP-0001+ADV-GAP-0005",
+  files:"semantic.mjs",
+  change:"require_boolean_type_for_if_and_while_conditions",
+  validation:"numeric_conditions_rejected!boolean_conditions_pass",
+  priority:"high",
+  status:"proposed"
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0004",
+  gaps:"ADV-GAP-0002+ADV-GAP-0003",
+  files:"parser.mjs",
+  change:"replace_regex_literal_and_argument_parsing_with_quote_escape_depth_aware_scanner",
+  validation:"escaped_quote_and_comma_inside_string_roundtrip!nested_call_arguments_preserved",
+  priority:"high",
+  status:"proposed"
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0005",
+  gaps:"ADV-GAP-0007",
+  files:"semantic.mjs",
+  change:"infer_operand_types_for_relational_ops!require_compatible_numeric_or_string_pair",
+  validation:"number_less_than_string_rejected!number_less_than_number_pass",
+  priority:"high",
+  status:"proposed"
+}
+
+~AdvancedSolution{
+  id:"ADV-SOL-0006",
+  gaps:"ADV-GAP-0004",
+  files:"semantic.mjs",
+  change:"detect_statements_after_unconditional_return_and_emit_unreachable_code_diagnostic",
+  validation:"unreachable_binding_rejected_or_warned_by_policy!normal_sequence_pass",
+  priority:"medium",
+  status:"proposed"
+}
+
+~AdvancedSummary{
+  stress_duration_ms:1200074,
+  probes:56805,
+  runtime_tests:30343,
+  runtime_fail:3296,
+  invalid_program_accepted:13100,
+  valid_program_rejected:4453,
+  unique_findings:10,
+  upstream_fix_commit:"d388ee3685a6e3bf7babed5a7fdd50d87eac735a",
+  upstream_push_status:"PUSHED",
+  advanced_solutions:6,
+  status:"NEW_GAPS_CONFIRMED"
+}

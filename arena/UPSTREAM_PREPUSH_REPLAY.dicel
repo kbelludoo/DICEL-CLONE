@@ -1,0 +1,10 @@
+@DICE-L:arena-deep-stress:1.0.0;upstream=70611fb7;duration_ms=114517;status=completed
+~StressSummary{probes:70939,compile_pass:31330,compile_fail:39609,runtime_tests:29556,runtime_pass:29556,runtime_fail:0,unique_findings:0,fixes_applied:0}
+~PhaseCount{phase:"P10_RUNTIME",count:14152}
+~PhaseCount{phase:"P6_PRECEDENCE",count:14239}
+~PhaseCount{phase:"P7_CALLS",count:14291}
+~PhaseCount{phase:"P8_TYPES",count:14015}
+~PhaseCount{phase:"P9_SCOPE",count:14242}
+~CategoryCount{category:"compile_pass",count:31330}
+~CategoryCount{category:"controlled_rejection",count:39609}
+~Changelog{duration_ms:114517,probes:70939,findings:0,fixes_applied:0}

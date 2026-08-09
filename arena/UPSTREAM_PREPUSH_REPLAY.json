@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "upstream_commit": "70611fb7d720d6c8f2837b6f119564d0a5535c83",
+  "seed": 260830,
+  "duration_requested_ms": 600000,
+  "duration_actual_ms": 114517,
+  "probes": 70939,
+  "compile_pass": 31330,
+  "compile_fail": 39609,
+  "runtime_tests": 29556,
+  "runtime_pass": 29556,
+  "runtime_fail": 0,
+  "family_stats": {
+    "P7_CALLS": 14291,
+    "P9_SCOPE": 14242,
+    "P6_PRECEDENCE": 14239,
+    "P10_RUNTIME": 14152,
+    "P8_TYPES": 14015
+  },
+  "phase_stats": {
+    "compiled": 31330,
+    "semantic": 39609
+  },
+  "category_stats": {
+    "compile_pass": 31330,
+    "controlled_rejection": 39609
+  },
+  "unique_findings": [],
+  "worker_stderr": ""
+}

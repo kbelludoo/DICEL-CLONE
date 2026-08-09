@@ -1,0 +1,23 @@
+@DICE-L:arena-advanced-stress:1.0.0;upstream=d388ee3;duration_ms=1200074;status=completed
+~StressSummary{probes:56805,compile_pass:43443,compile_fail:13362,runtime_tests:30343,runtime_pass:27047,runtime_fail:3296,unique_findings:10,fixes_applied:0}
+~PhaseCount{phase:"P11_CALL_NESTING",count:11497}
+~PhaseCount{phase:"P12_CONTROL_FLOW",count:11287}
+~PhaseCount{phase:"P13_ASSIGNMENT",count:11233}
+~PhaseCount{phase:"P14_STRINGS",count:11182}
+~PhaseCount{phase:"P15_RUNTIME",count:11606}
+~CategoryCount{category:"compile_pass",count:27047}
+~CategoryCount{category:"controlled_rejection",count:8909}
+~CategoryCount{category:"invalid_program_accepted",count:13100}
+~CategoryCount{category:"runtime_divergence",count:3296}
+~CategoryCount{category:"valid_program_rejected",count:4453}
+~Finding{id:"ADV-GAP-0001",signature_hash:"303893fbfbfcc6de",category:"invalid_program_accepted",family:"P12_CONTROL_FLOW",case_name:"numeric_while",count:2312,source_sha256:"cf0546141477312e344d54d454c0aea1d10418379274b29ec24744102751af36",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0002",signature_hash:"8968c3367f43e358",category:"valid_program_rejected",family:"P14_STRINGS",case_name:"escaped_quote",count:2216,source_sha256:"156f3c65bdb79be14f957d5c4c2d146f400b2e7727625ba8f0e4c6ba1b7225f0",diagnostic:"[{\"severity\":\"error\",\"message\":\"test: cannot type expression \\\"\\\"a\\\\\\\"b\\\"\\\"\"}]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0003",signature_hash:"357a30c65d0f5f0f",category:"valid_program_rejected",family:"P14_STRINGS",case_name:"comma_argument",count:2237,source_sha256:"4d66614ddfd316de65b18a36bd97ba8ee5eac6f9ecdd9cc2e2afdb82523305af",diagnostic:"[{\"severity\":\"error\",\"message\":\"test: arity mismatch for echo expected N got N\"},{\"severity\":\"error\",\"message\":\"test: cannot type expression \\\"\\\"a\\\"\"},{\"severity\":\"error\",\"message\":\"test: cannot type expression \\\"b\\\"\\\"\"}]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0004",signature_hash:"4637bd8613f76412",category:"invalid_program_accepted",family:"P12_CONTROL_FLOW",case_name:"unreachable",count:2263,source_sha256:"882f20403c2ccbc7e91478c912654f9c7af2a7e3a3c7cac95ccab3e38d85d737",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0005",signature_hash:"6bc5b5815faab245",category:"invalid_program_accepted",family:"P12_CONTROL_FLOW",case_name:"numeric_if",count:2206,source_sha256:"d72819b3f55986e630fe0a98c4b5fa93a3dddc2644fe9b7bf940dfc3cddf9ce8",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0006",signature_hash:"4b758ea2ed825c1d",category:"invalid_program_accepted",family:"P11_CALL_NESTING",case_name:"direct_recursion",count:2304,source_sha256:"ef592cb5ebdf4a1bdc8f5e5e2d5a504e12751dd258bfbbf4d8f02e26cab79f2d",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0007",signature_hash:"6a23a2508f8d1d69",category:"invalid_program_accepted",family:"P15_RUNTIME",case_name:"mixed_relational",count:1715,source_sha256:"25022cb903f156f5a24776f5877581fc007a807731fea4cc53bd04151690ccf2",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0008",signature_hash:"49eb3e45d95f48b8",category:"invalid_program_accepted",family:"P11_CALL_NESTING",case_name:"mutual_recursion",count:2300,source_sha256:"88f678becb0baa6de7d9c4351b74e07793a5f33995a44e3b37378bee84a44f67",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0009",signature_hash:"c6d05a2de07b304c",category:"runtime_divergence",family:"P15_RUNTIME",case_name:"loose_neq",count:1685,source_sha256:"3e38acd7bf1d7bd1eb7f14b663d17e1b494b160915ca1e32f868855c5b1892a8",diagnostic:"[]",status:"reported_unfixed"}
+~Finding{id:"ADV-GAP-0010",signature_hash:"1c394108d3d4f354",category:"runtime_divergence",family:"P15_RUNTIME",case_name:"loose_eq",count:1611,source_sha256:"d07dada35eb179f3b15611d732c4ce5092e65062e2dc4e829c57b6015917279c",diagnostic:"[]",status:"reported_unfixed"}
+~Changelog{duration_ms:1200074,probes:56805,findings:10,fixes_applied:0}
