@@ -34,3 +34,5 @@
 ^STEP28:push_advanced_fix=dicel-unified@664f6ba!27_regressions!56805_zero_findings
 ^STEP29:type_flow_stress_15m=node_arena/type_flow_stress_15m.mjs!seed_260902
 ^STEP30:type_flow_report=arena/ARENA_TYPE_FLOW_15M_REPORT.dicel!append_RESULTS.dicel
+^STEP28:push_type_flow_fix=dicel-unified@b2ecde5!21_typeflow!14_deep!12_differential
+^STEP29:postpush_search=type_flow_stress!duration_600000!seed_260903!findings_0

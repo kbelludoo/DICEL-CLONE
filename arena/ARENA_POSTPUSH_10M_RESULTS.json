@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "upstream_commit": "b2ecde5_pending_remote_head",
+  "seed": 260903,
+  "duration_requested_ms": 600000,
+  "duration_actual_ms": 600036,
+  "probes": 28894,
+  "compile_pass": 10180,
+  "compile_fail": 18714,
+  "runtime_tests": 10180,
+  "runtime_pass": 10180,
+  "runtime_fail": 0,
+  "family_stats": {
+    "P17_STRUCTS": 5720,
+    "P18_NUMERIC": 5691,
+    "P20_BUILTINS": 5811,
+    "P19_LOOPS": 5841,
+    "P16_CALL_TYPES": 5831
+  },
+  "phase_stats": {
+    "semantic": 18714,
+    "compiled": 10180
+  },
+  "category_stats": {
+    "controlled_rejection": 18714,
+    "compile_pass": 10180
+  },
+  "unique_findings": [],
+  "worker_stderr": ""
+}

@@ -893,3 +893,51 @@
 ~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_15M_REPORT.dicel",sha256:"1656b636a04da8bc8c43ad2feb85caa2d326e276c94547244991f82ca1038287"}
 ~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_15M_RESULTS.json",sha256:"800eacf5041f1512e4c937eaee970b73505fd0ab25d4ef9c049aa8207595a7d9"}
 ~EvidenceHash{path:"arena/ARENA_TYPE_FLOW_SOLUTIONS.dicel",sha256:"77dfec94c8ffc62253143d0564dcc37370906a4a83f6b7eaab6937d90cda4926"}
+
+~UpstreamPush{
+  source_commit:"c10c879",
+  pushed_commit:"b2ecde5",
+  files_changed:"package.json+parser.mjs+semantic.mjs+type_flow_regression.mjs",
+  regression_cases:35,
+  differential_cases:12,
+  prepush_replay_probes:42911,
+  prepush_replay_findings:0,
+  status:"PUSHED_TO_DICEL_UNIFIED_MASTER"
+}
+
+~StressAuditResult{
+  id:"CYCLE-0009",
+  duration_ms:600036,
+  probes:28894,
+  compile_pass:10180,
+  compile_fail:18714,
+  runtime_tests:10180,
+  runtime_pass:10180,
+  runtime_fail:0,
+  confirmed_findings:0,
+  false_positives:0,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_POSTPUSH_10M_REPORT.dicel",
+  status:"POST_PUSH_NO_GAPS_IN_P16_TO_P20_SCOPE"
+}
+
+~SuggestionResolution{suggestion_id:"SUG-0041",upstream_commit:"b2ecde5",verification:"wrong_call_arg_and_return_types_rejected",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0042",upstream_commit:"b2ecde5",verification:"struct_literal_shape_and_field_types_validated",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0043",upstream_commit:"b2ecde5",verification:"constant_numeric_overflow_rejected",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0044",upstream_commit:"b2ecde5",verification:"unproven_active_loops_rejected",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0045",upstream_commit:"b2ecde5",verification:"builtin_arity_argument_and_domain_validation_added",status:"FIXED_UPSTREAM"}
+~SuggestionResolution{suggestion_id:"SUG-0046",upstream_commit:"b2ecde5",verification:"derived_zero_divisor_constant_folded_and_rejected",status:"FIXED_UPSTREAM"}
+
+~PostPushSummary{
+  upstream_commit:"b2ecde5",
+  type_flow_regression:"21_PASS_0_FAIL",
+  deep_regression:"14_PASS_0_FAIL",
+  p101b2_differential:"12_PASS_0_FAIL",
+  postpush_probes:28894,
+  postpush_runtime_fail:0,
+  postpush_findings:0,
+  status:"TYPE_FLOW_FIXES_PUSHED_AND_VERIFIED"
+}
+
+~EvidenceHash{path:"arena/ARENA_POSTPUSH_10M_REPORT.dicel",sha256:"be7f096f498a8e5ab34822bee3651033e17cad720632e930b37640c465c1cf08"}
+~EvidenceHash{path:"arena/ARENA_POSTPUSH_10M_RESULTS.json",sha256:"d8078ab6377f8c4cf89cb696564ee826b4fa9115dcea0c36313b1ffb18766106"}

@@ -1,0 +1,10 @@
+@DICE-L:arena-type-flow:1.0.0;upstream=b2ecde5;duration_ms=600036;status=completed
+~StressSummary{probes:28894,compile_pass:10180,compile_fail:18714,runtime_tests:10180,runtime_pass:10180,runtime_fail:0,unique_findings:0,fixes_applied:0}
+~PhaseCount{phase:"P16_CALL_TYPES",count:5831}
+~PhaseCount{phase:"P17_STRUCTS",count:5720}
+~PhaseCount{phase:"P18_NUMERIC",count:5691}
+~PhaseCount{phase:"P19_LOOPS",count:5841}
+~PhaseCount{phase:"P20_BUILTINS",count:5811}
+~CategoryCount{category:"compile_pass",count:10180}
+~CategoryCount{category:"controlled_rejection",count:18714}
+~Changelog{duration_ms:600036,probes:28894,findings:0,fixes_applied:0}

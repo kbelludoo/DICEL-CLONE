@@ -1,0 +1,22 @@
+PASS valid_numeric_call
+PASS wrong_arg_type
+PASS wrong_call_return
+PASS valid_string_call
+PASS valid_struct
+PASS struct_wrong_type
+PASS struct_missing
+PASS struct_extra
+PASS struct_duplicate
+PASS overflow_add
+PASS overflow_mul
+PASS derived_zero_div
+PASS safe_add
+PASS infinite_loop
+PASS bounded_unannotated
+PASS false_loop
+PASS parse_int_invalid_domain
+PASS math_max_wrong_type
+PASS isfinite_wrong_type
+PASS parse_int_valid
+PASS math_max_valid
+{"pass":21,"fail":0,"total":21}
