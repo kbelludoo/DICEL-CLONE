@@ -1,0 +1,12 @@
+@DICE-L:dicel-clone-runbook:1.0.0;status=reproducible
+
+^ENV:required=git!node20!python3!gcc!tsx4_20_6
+^SOURCE:clone=https_github_com_madler_zlib_git!commit=e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca
+^COMPILER:repo=https_github_com_kbelludoo_dicel_unified_git!commit=11f6e0b7!path=dicel-lang
+^STEP1:compiler_conformance=runConformance!expected=28_pass_0_fail
+^STEP2:compile=ports/zlib/zlib_version.dicel_to_evidence/zlib_version.generated.ts
+^STEP3:original=gcc_tests/zlib_version_original.c_plus_zutil.c
+^STEP4:generated=tsx_tests/zlib_version_generated.test.ts
+^STEP5:compare=stdout_byte_equal!sha256_equal
+^STEP6:adler_attempt=compile!capture_!01!record_parser_gap
+^RESULTS:append_all_cycles_to_RESULTS.dicel

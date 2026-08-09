@@ -1,0 +1,12 @@
+DicelError: !01:expected token, got '65521'
+@:2:16
+    at parseError (/tmp/dicel-compiler/src/core/errors.ts:64:9)
+    at ExecStmtParser.expect (/tmp/dicel-compiler/src/core/exec-stmt-parser.ts:41:7)
+    at ExecStmtParser.parseFor (/tmp/dicel-compiler/src/core/exec-stmt-parser.ts:110:25)
+    at ExecStmtParser.parseBlock (/tmp/dicel-compiler/src/core/exec-stmt-parser.ts:78:61)
+    at parseExecBlock (/tmp/dicel-compiler/src/core/exec-stmt-parser.ts:283:24)
+    at TypeScriptEmitter.visitFunction (/tmp/dicel-compiler/src/emitter.ts:161:21)
+    at TypeScriptEmitter.emit (/tmp/dicel-compiler/src/emitter.ts:83:21)
+    at TypeScriptEmitter.visitProgram (/tmp/dicel-compiler/src/emitter.ts:108:17)
+    at <anonymous> (/tmp/dicel-compiler/compile-file.ts:11:45)
+    at Object.<anonymous> (/tmp/dicel-compiler/compile-file.ts:14:89)

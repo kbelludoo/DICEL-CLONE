@@ -1,0 +1,8 @@
+{
+  "phase": "compile",
+  "success": true,
+  "structs": 0,
+  "enums": 0,
+  "functions": 1,
+  "output_bytes": 505
+}

@@ -1,0 +1,5 @@
+@zlib_version:1.0.0
+
+fn$zlibVersion()->str {
+  ret "1.3.2.1-motley"
+}

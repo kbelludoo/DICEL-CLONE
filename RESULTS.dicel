@@ -1,0 +1,116 @@
+@DICE-L:dicel-clone-results:1.0.0;append_only=1;source=zlib;status=incremental
+
+|ResultStatus{"PASS"=0,"FAIL"=1,"BLOCKED"=2,"NOT_RUN"=3}
+
+~CycleResult{
+  id:str,
+  module:str,
+  source_ref:str,
+  dicel_ref:str,
+  compiler_ref:str,
+  compile_status:ResultStatus,
+  target_ref:str,
+  execution_status:ResultStatus,
+  comparison_status:ResultStatus,
+  original_output_sha256:str,
+  generated_output_sha256:str,
+  stdout_ref:str,
+  stderr_ref:str,
+  gap:str,
+  solution:str,
+  final_status:ResultStatus
+}
+
+~CycleResult{
+  id:"CYCLE-0000",
+  module:"compiler_baseline",
+  source_ref:"dicel-unified@11f6e0b7:dicel-lang/tests/conformance",
+  dicel_ref:"NA",
+  compiler_ref:"dicel_v2@11f6e0b7",
+  compile_status:PASS,
+  target_ref:"28_expected_ast_and_target_snapshots",
+  execution_status:PASS,
+  comparison_status:PASS,
+  original_output_sha256:"NA",
+  generated_output_sha256:"NA",
+  stdout_ref:"evidence/compiler_conformance.stdout.log",
+  stderr_ref:"evidence/compiler_conformance.stderr.log",
+  gap:"none",
+  solution:"none",
+  final_status:PASS
+}
+
+~CycleResult{
+  id:"CYCLE-0001",
+  module:"zlibVersion",
+  source_ref:"madler/zlib@e3dc0a85:zutil.c::zlibVersion",
+  dicel_ref:"ports/zlib/zlib_version.dicel",
+  compiler_ref:"dicel_v2@11f6e0b7",
+  compile_status:PASS,
+  target_ref:"evidence/zlib_version.generated.ts",
+  execution_status:PASS,
+  comparison_status:PASS,
+  original_output_sha256:"231e004e85182b6608249354f4b473ca4749a1e7ba6ff8f3233a9464a630e387",
+  generated_output_sha256:"231e004e85182b6608249354f4b473ca4749a1e7ba6ff8f3233a9464a630e387",
+  stdout_ref:"evidence/original.stdout.log+evidence/generated.stdout.log",
+  stderr_ref:"evidence/original.stderr.log+evidence/generated.stderr.log",
+  gap:"none",
+  solution:"exact_string_return_supported_by_parser_typechecker_emitter",
+  final_status:PASS
+}
+
+~CycleResult{
+  id:"CYCLE-0002",
+  module:"adler32Byte",
+  source_ref:"madler/zlib@e3dc0a85:adler32.c",
+  dicel_ref:"ports/zlib/adler32_attempt.dicel",
+  compiler_ref:"dicel_v2@11f6e0b7",
+  compile_status:BLOCKED,
+  target_ref:"NA",
+  execution_status:NOT_RUN,
+  comparison_status:NOT_RUN,
+  original_output_sha256:"NA",
+  generated_output_sha256:"NA",
+  stdout_ref:"evidence/adler32.compile.stdout.log",
+  stderr_ref:"evidence/adler32.compile.stderr.log",
+  gap:"exec_parser_percent_token_reserved_for_loop!plus_star_slash_modulo_precedence_missing",
+  solution:"split_loop_sigil_from_modulo!add_arithmetic_tokens!implement_precedence_parser!emit_arithmetic_ops!add_conformance_vectors",
+  final_status:BLOCKED
+}
+
+~EvidenceHash{
+  path:str,
+  sha256:str
+}
+
+~EvidenceHash{path:"zlib:zutil.c",sha256:"04303a4d607958905f0c036aeca43d14218d01752e6c444fdbeb94983912ec38"}
+~EvidenceHash{path:"zlib:zlib.h",sha256:"6f5162028729e94b221eb6586debe9548a007fd951cfea7a77f67e0323555545"}
+~EvidenceHash{path:"ports/zlib/zlib_version.dicel",sha256:"4b163cc668c5478ff6d1edd1c6e0beb543e6db9638c01fe32836f71b79449648"}
+~EvidenceHash{path:"evidence/zlib_version.generated.ts",sha256:"d7ffcf0f329f26a3e97936e5a598fb4b18eae56b0b37792708c4266748e85424"}
+~EvidenceHash{path:"ports/zlib/adler32_attempt.dicel",sha256:"2f956bebfafd0cc8db9ea5523270e9a696e3e0dc12b4d5a9b4f38b03dc98314f"}
+
+~Summary{
+  cycles:num,
+  pass:num,
+  fail:num,
+  blocked:num,
+  real_compiles:num,
+  real_executions:num,
+  parity_proven:num,
+  full_zlib_port:str
+}
+
+~summary:Summary{
+  cycles:3,
+  pass:2,
+  fail:0,
+  blocked:1,
+  real_compiles:1,
+  real_executions:1,
+  parity_proven:1,
+  full_zlib_port:"NOT_COMPLETE"
+}
+
+^NEXT:parser_gap=arithmetic_operator_support
+^NEXT:module=adler32Byte
+^NEXT:success_gate=compiler_pass!generated_target!c_reference_vectors!output_hash_equality

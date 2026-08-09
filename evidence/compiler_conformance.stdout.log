@@ -1,0 +1,31 @@
+  PASS  001_struct_basic
+  PASS  002_struct_extends
+  PASS  003_struct_optional
+  PASS  004_enum_string
+  PASS  005_function_primitives
+  PASS  006_function_generic
+  PASS  007_tool_res
+  PASS  008_config_required
+  PASS  009_config_optional
+  PASS  010_route_flags
+  PASS  011_rule_raw
+  PASS  012_generic_types
+  PASS  013_array_sugar
+  PASS  014_full_schema
+  PASS  015_struct_undefined_type
+  PASS  016_struct_duplicate
+  PASS  017_struct_undefined_extends
+  PASS  018_tool_res_arity
+  PASS  019_fn_undefined_return
+  PASS  020_config_unknown_type
+  PASS  021_valid_header
+  PASS  022_version_missing
+  PASS  023_version_invalid
+  PASS  024_version_invalid_nonnumeric
+  PASS  025_reserved_header
+  PASS  026_ai_metadata
+  PASS  027_ai_with_project_header
+  PASS  028_ai_malformed_like
+
+conformance: 28 passed, 0 failed (28 cases)
+AUDIT_JSON={"counts":{"pass":28,"fail":0},"results":[{"name":"001_struct_basic","pass":true,"failures":[]},{"name":"002_struct_extends","pass":true,"failures":[]},{"name":"003_struct_optional","pass":true,"failures":[]},{"name":"004_enum_string","pass":true,"failures":[]},{"name":"005_function_primitives","pass":true,"failures":[]},{"name":"006_function_generic","pass":true,"failures":[]},{"name":"007_tool_res","pass":true,"failures":[]},{"name":"008_config_required","pass":true,"failures":[]},{"name":"009_config_optional","pass":true,"failures":[]},{"name":"010_route_flags","pass":true,"failures":[]},{"name":"011_rule_raw","pass":true,"failures":[]},{"name":"012_generic_types","pass":true,"failures":[]},{"name":"013_array_sugar","pass":true,"failures":[]},{"name":"014_full_schema","pass":true,"failures":[]},{"name":"015_struct_undefined_type","pass":true,"failures":[]},{"name":"016_struct_duplicate","pass":true,"failures":[]},{"name":"017_struct_undefined_extends","pass":true,"failures":[]},{"name":"018_tool_res_arity","pass":true,"failures":[]},{"name":"019_fn_undefined_return","pass":true,"failures":[]},{"name":"020_config_unknown_type","pass":true,"failures":[]},{"name":"021_valid_header","pass":true,"failures":[]},{"name":"022_version_missing","pass":true,"failures":[]},{"name":"023_version_invalid","pass":true,"failures":[]},{"name":"024_version_invalid_nonnumeric","pass":true,"failures":[]},{"name":"025_reserved_header","pass":true,"failures":[]},{"name":"026_ai_metadata","pass":true,"failures":[]},{"name":"027_ai_with_project_header","pass":true,"failures":[]},{"name":"028_ai_malformed_like","pass":true,"failures":[]}]}

@@ -1,0 +1,45 @@
+SOURCE_REPO=https://github.com/madler/zlib.git
+SOURCE_COMMIT=e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca
+COMPILER_REPO=https://github.com/kbelludoo/dicel-unified.git
+COMPILER_COMMIT=11f6e0b7
+
+COMMAND=git clone --depth 1 https://github.com/madler/zlib.git /tmp/zlib-source
+EXIT=0
+
+COMMAND=tsx dicel-compiler/run-conformance.ts
+EXIT=0
+RESULT=28_pass_0_fail
+STDOUT=evidence/compiler_conformance.stdout.log
+STDERR=evidence/compiler_conformance.stderr.log
+
+COMMAND=tsx compile-file.ts ports/zlib/zlib_version.dicel evidence/zlib_version.generated.ts
+EXIT=0
+STDOUT=evidence/zlib_version.compile.stdout.log
+STDERR=evidence/zlib_version.compile.stderr.log
+
+COMMAND=gcc -std=c11 -O2 -I zlib-source tests/zlib_version_original.c zlib-source/zutil.c
+EXIT=0
+STDOUT=evidence/original_gcc.stdout.log
+STDERR=evidence/original_gcc.stderr.log
+
+COMMAND=evidence/zlib_version_original
+EXIT=0
+STDOUT=evidence/original.stdout.log
+STDERR=evidence/original.stderr.log
+
+COMMAND=tsx tests/zlib_version_generated.test.ts
+EXIT=0
+STDOUT=evidence/generated.stdout.log
+STDERR=evidence/generated.stderr.log
+
+COMMAND=cmp evidence/original.stdout.log evidence/generated.stdout.log
+EXIT=0
+RESULT=byte_equal
+SHA256=231e004e85182b6608249354f4b473ca4749a1e7ba6ff8f3233a9464a630e387
+
+COMMAND=tsx compile-file.ts ports/zlib/adler32_attempt.dicel evidence/adler32.generated.ts
+EXIT=1
+STDOUT=evidence/adler32.compile.stdout.log
+STDERR=evidence/adler32.compile.stderr.log
+RESULT=!01_expected_token_got_65521
+SOLUTION=add_arithmetic_operator_grammar_and_precedence

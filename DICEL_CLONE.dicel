@@ -1,0 +1,37 @@
+@DICE-L:dicel-clone:1.0.0;mode=incremental_validation_lab;status=active
+
+^R1:pipeline=source_original!dicel!compiler_real!target!test_original!compare
+^R2:no_fake_success=compile_exit_zero!target_exists!tests_exit_zero!outputs_equal
+^R3:result_log=RESULTS.dicel!append_only!one_document
+^R4:source_pin=repository!commit_sha!source_hash
+^R5:compiler_pin=repository_history!commit_sha!conformance_required
+^R6:failure_policy=record_stdout!record_stderr!record_gap!record_next_fix
+^R7:scope=small_module_first!expand_only_after_parity
+^R8:status_values=PASS!FAIL!BLOCKED!NOT_RUN
+
+|Stage{"SOURCE"=0,"DICEL"=1,"COMPILE"=2,"TARGET"=3,"EXECUTE"=4,"COMPARE"=5}
+|ResultStatus{"PASS"=0,"FAIL"=1,"BLOCKED"=2,"NOT_RUN"=3}
+
+~ProjectState{
+  source_repo:str,
+  source_commit:str,
+  compiler_commit:str,
+  current_module:str,
+  cycles:num,
+  passed:num,
+  failed:num,
+  blocked:num,
+  next:str
+}
+
+~state:ProjectState{
+  source_repo:"github:madler/zlib",
+  source_commit:"e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca",
+  compiler_commit:"11f6e0b7",
+  current_module:"adler32",
+  cycles:3,
+  passed:2,
+  failed:0,
+  blocked:1,
+  next:"add_arithmetic_operator_grammar_then_recompile_adler32_attempt"
+}

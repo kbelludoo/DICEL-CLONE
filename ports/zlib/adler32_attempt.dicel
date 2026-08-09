@@ -1,0 +1,9 @@
+@zlib_adler32:1.0.0
+
+fn$adler32Byte(adler:num,byte:num)->num {
+  s1 = adler % 65521
+  s2 = adler / 65536
+  s1next = (s1 + byte) % 65521
+  s2next = (s2 + s1next) % 65521
+  ret s1next + s2next * 65536
+}
