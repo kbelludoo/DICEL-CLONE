@@ -1,0 +1,35 @@
+{
+  "loops": [
+    4,
+    5,
+    6
+  ],
+  "new_suggestions": 12,
+  "ids": [
+    "SUG-0010",
+    "SUG-0011",
+    "SUG-0012",
+    "SUG-0013",
+    "SUG-0014",
+    "SUG-0015",
+    "SUG-0016",
+    "SUG-0017",
+    "SUG-0018",
+    "SUG-0019",
+    "SUG-0020",
+    "SUG-0021"
+  ],
+  "evidence": {
+    "type_validate": 166,
+    "body_parse": 161,
+    "target_gate": 119,
+    "body_error": 2,
+    "len_one": 70,
+    "null_buf": 81,
+    "nmax_loop": 97,
+    "short_loop": 86
+  },
+  "arithmetic_conformance_cases": 0,
+  "ci_present": false,
+  "hash_chain_present": false
+}

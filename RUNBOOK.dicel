@@ -12,3 +12,5 @@
 ^RESULTS:append_all_cycles_to_RESULTS.dicel
 ^STEP7:improvement_loop=python3_tools/improvement_loop.py!three_evidence_scans!append_RESULTS.dicel
 ^STEP8:dedup=rerun_loop!expected_new_suggestions_zero
+^STEP9:improvement_loop_v2=python3_tools/improvement_loop_v2.py!loops_4_5_6!append_RESULTS.dicel
+^STEP10:dedup_v2=rerun_loop_v2!expected_new_suggestions_zero

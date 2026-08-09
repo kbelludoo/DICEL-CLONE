@@ -256,3 +256,158 @@
   source_verified:true,
   next:"implement_SUG_0001_to_SUG_0005_then_recompile_adler32Byte"
 }
+
+~ImprovementSuggestion{
+  id:"SUG-0010",
+  loop:4,
+  area:"typechecker",
+  evidence:"typechecker.ts:166+emitter.ts:161",
+  problem:"typecheck_passes_before_exec_body_is_parsed",
+  proposed_change:"parse_and_typecheck_ExecBlock_inside_validateFunction!surface_body_errors_during_check",
+  validation:"adler_attempt_dicel_check_must_fail_before_emitter!conformance_28",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0011",
+  loop:4,
+  area:"diagnostics",
+  evidence:"adler32.compile.stderr.log:2",
+  problem:"body_diagnostic_resets_location_to_body_line_2_and_omits_file",
+  proposed_change:"carry_function_body_source_offset_into_ExecLexer!attach_file_line_column_to_DicelError",
+  validation:"assert_adler_error_points_to_ports/zlib/adler32_attempt.dicel_line_4_percent",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0012",
+  loop:4,
+  area:"targets",
+  evidence:"cli.ts:119",
+  problem:"canonical_compiler_rejects_every_target_except_typescript",
+  proposed_change:"add_C_emitter_or_stable_C_ABI_target_after_TypeScript_operator_parity",
+  validation:"compile_zlibVersion_to_C!gcc!compare_original_output",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0013",
+  loop:4,
+  area:"conformance",
+  evidence:"dicel-compiler/tests/conformance:28_cases",
+  problem:"conformance_suite_has_zero_executable_arithmetic_body_cases",
+  proposed_change:"add_operator_precedence_valid_invalid_and_emitter_snapshots_to_conformance",
+  validation:"conformance_arithmetic_matrix!legacy_28_remain_green",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0014",
+  loop:5,
+  area:"zlib_semantics",
+  evidence:"adler32.c:70+81",
+  problem:"adler_port_plan_omits_len_one_fast_path_and_null_buffer_contract",
+  proposed_change:"model_null_input_result_one!preserve_len_one_branch!add_exact_vectors",
+  validation:"C_and_target_match_for_null_len0_len1",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0015",
+  loop:5,
+  area:"zlib_semantics",
+  evidence:"adler32.c:97+86",
+  problem:"adler_port_plan_omits_NMAX_chunking_and_remainder_paths",
+  proposed_change:"port_in_three_stages_byte_short_buffer_NMAX_blocks!preserve_mod_reduction_points",
+  validation:"vectors_len_15_16_5551_5552_5553_11104",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0016",
+  loop:5,
+  area:"testing",
+  evidence:"adler32.c:61-125",
+  problem:"single_fixed_vector_cannot_prove_checksum_equivalence",
+  proposed_change:"add_seeded_differential_fuzzer_C_vs_generated_target_with_edge_lengths_and_random_bytes",
+  validation:"10000_seeded_cases!zero_mismatch!store_seed_and_hashes",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0017",
+  loop:5,
+  area:"safety",
+  evidence:"tests/zlib_version_original.c+adler32.c",
+  problem:"native_reference_execution_lacks_sanitizer_gate",
+  proposed_change:"compile_reference_with_undefined_and_address_sanitizers_for_port_vectors",
+  validation:"gcc_ubsan_asan_exit_zero!stderr_empty",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0018",
+  loop:6,
+  area:"reproducibility",
+  evidence:"evidence/commands.log:/tmp_paths",
+  problem:"loop_requires_untracked_absolute_compiler_and_zlib_directories",
+  proposed_change:"add_bootstrap_script_with_pinned_repo_commits_tool_versions_and_cache_directory",
+  validation:"fresh_clone_one_command_reproduces_RESULTS_cycle_hashes",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0019",
+  loop:6,
+  area:"ci",
+  evidence:"repository:.github/workflows_absent",
+  problem:"no_remote_gate_reexecutes_compiler_and_parity_tests",
+  proposed_change:"add_GitHub_Actions_matrix_for_conformance_compile_execute_compare_and_dedup",
+  validation:"pull_request_blocks_on_any_stage_failure",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0020",
+  loop:6,
+  area:"integrity",
+  evidence:"RESULTS.dicel:no_chain_hash",
+  problem:"append_only_claim_has_no_cryptographic_chain",
+  proposed_change:"add_previous_hash_cycle_hash_evidence_hash_set_and_verify_command",
+  validation:"tampered_prior_cycle_causes_chain_validation_failure",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0021",
+  loop:6,
+  area:"automation",
+  evidence:"DICEL_CLONE.dicel:manual_counts",
+  problem:"project_state_counts_are_hand_maintained_and_can_drift",
+  proposed_change:"derive_ProjectState_and_SuggestionLoopSummary_from_RESULTS_AST",
+  validation:"regenerate_state_idempotently!diff_zero_on_second_run",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~suggestion_loop_v2:SuggestionLoopSummary{
+  loops:6,
+  suggestions:21,
+  critical:6,
+  high:10,
+  medium:5,
+  low:0,
+  source_verified:true,
+  next:"implement_body_validation_arithmetic_parser_operator_emitter_and_conformance_before_adler_retry"
+}
