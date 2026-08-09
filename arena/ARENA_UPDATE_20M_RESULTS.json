@@ -1,0 +1,877 @@
+{
+  "version": 1,
+  "upstream_commit": "249091e7e8ac24169e9fe91f431f004f94e3590a",
+  "seed": 260820,
+  "duration_requested_ms": 1200000,
+  "duration_actual_ms": 1200087,
+  "started_at": "2026-08-09T03:36:36.600Z",
+  "finished_at": "2026-08-09T03:56:36.687Z",
+  "probes": 57806,
+  "compile_pass": 53987,
+  "compile_fail": 3819,
+  "runtime_tests": 52074,
+  "runtime_pass": 48795,
+  "runtime_fail": 3279,
+  "family_stats": {
+    "P2_PARSER": 11481,
+    "P3_AST": 11640,
+    "P5_RUNTIME": 11692,
+    "P1_LEXICAL": 11555,
+    "P4_EMITTER": 11438
+  },
+  "phase_stats": {
+    "compiled": 53987,
+    "semantic": 3819
+  },
+  "category_stats": {
+    "runtime_divergence": 3279,
+    "controlled_rejection": 3819,
+    "unsupported_feature_emitted": 24109,
+    "compile_pass": 22714,
+    "accepted_with_diagnostics": 3885
+  },
+  "operator_stats": {
+    "-,-": {
+      "probes": 1705,
+      "pass": 1705,
+      "fail": 0,
+      "runtime_fail": 1705
+    },
+    "NA": {
+      "probes": 13488,
+      "pass": 9669,
+      "fail": 3819,
+      "runtime_fail": 0
+    },
+    "%": {
+      "probes": 3949,
+      "pass": 3949,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "-": {
+      "probes": 2013,
+      "pass": 2013,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "/": {
+      "probes": 5562,
+      "pass": 5562,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "+,-": {
+      "probes": 1607,
+      "pass": 1607,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "*": {
+      "probes": 2061,
+      "pass": 2061,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "(+)*": {
+      "probes": 1665,
+      "pass": 1665,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "^": {
+      "probes": 757,
+      "pass": 757,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">>": {
+      "probes": 722,
+      "pass": 722,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "|": {
+      "probes": 716,
+      "pass": 716,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">=": {
+      "probes": 740,
+      "pass": 740,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "+": {
+      "probes": 4034,
+      "pass": 4034,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "&": {
+      "probes": 3882,
+      "pass": 3882,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "?:": {
+      "probes": 1556,
+      "pass": 1556,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "==": {
+      "probes": 2046,
+      "pass": 2046,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<<": {
+      "probes": 3869,
+      "pass": 3869,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "/ ,/": {
+      "probes": 1626,
+      "pass": 1626,
+      "fail": 0,
+      "runtime_fail": 1574
+    },
+    "+,*": {
+      "probes": 1645,
+      "pass": 1645,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    ">": {
+      "probes": 767,
+      "pass": 767,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<=": {
+      "probes": 747,
+      "pass": 747,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "<": {
+      "probes": 659,
+      "pass": 659,
+      "fail": 0,
+      "runtime_fail": 0
+    },
+    "!=": {
+      "probes": 1990,
+      "pass": 1990,
+      "fail": 0,
+      "runtime_fail": 0
+    }
+  },
+  "unique_findings": [
+    {
+      "id": "UPDATE-GAP-0001",
+      "hash": "83fca83df52fa714",
+      "category": "runtime_divergence",
+      "family": "P2_PARSER",
+      "name": "sub_chain",
+      "operator": "-,-",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 635-432-9\n}\n",
+      "result": {
+        "id": 1,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "015841904d6bb27ddb8642b0bb163c66e1c48f2c1e185ab68446c4a3b571dcc8",
+        "js_sha256": "b45b24cbdde9bd81930f0dd59cbe8ae18f5d1d1fce1525eebd68d227b250acae",
+        "elapsed_ms": 2.566369999999999,
+        "runtime": true,
+        "runtime_actual": 212,
+        "runtime_expected": 194,
+        "runtime_equal": false
+      },
+      "count": 1705
+    },
+    {
+      "id": "UPDATE-GAP-0002",
+      "hash": "b9f954946f02c7be",
+      "category": "unsupported_feature_emitted",
+      "family": "P3_AST",
+      "name": "unknown_type",
+      "operator": "NA",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->Mystery {\n  return 390\n}\n",
+      "result": {
+        "id": 4,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "fn test: unknown return type \"Mystery\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "86e7cdbf72864d3d1a6d3e62ded4c213b6248d37a54990317b122f1b324c0579",
+        "js_sha256": "0148a8a24efc020d32a9b26c22118cc143e8bd9afc99ff61965a1f89d386e4f1",
+        "elapsed_ms": 0.14277800000000695,
+        "runtime": true,
+        "runtime_actual": 390,
+        "runtime_expected": 390,
+        "runtime_equal": true
+      },
+      "count": 1951
+    },
+    {
+      "id": "UPDATE-GAP-0003",
+      "hash": "729cf8f6f5b2e3ac",
+      "category": "unsupported_feature_emitted",
+      "family": "P5_RUNTIME",
+      "name": "differential",
+      "operator": "%",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 560%492\n}\n",
+      "result": {
+        "id": 5,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"560%492\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "a54e964c2f1ca06012a938bd39261cbca7737591ef95b64114760866cc439a5f",
+        "js_sha256": "96d1fca9d6858ae6dd0ebf6a74f7337e52ff7f54dc9f390ef09f1dc440b74705",
+        "elapsed_ms": 0.16130200000000627,
+        "runtime": true,
+        "runtime_actual": 68,
+        "runtime_expected": 68,
+        "runtime_equal": true
+      },
+      "count": 1287
+    },
+    {
+      "id": "UPDATE-GAP-0004",
+      "hash": "1986df2b0c1e5ad1",
+      "category": "accepted_with_diagnostics",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "/",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 238/581\n}\n",
+      "result": {
+        "id": 8,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"238/581\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "b1f3da69cf0de43e83ddc41b8cfe216cc55f05d190eb7527e6ca3bf1e31b7016",
+        "js_sha256": "a431e0046a8f6eddc1836c51f2984aa2bd40f939a0ff6a1c535a67e248379422",
+        "elapsed_ms": 0.2805680000000166,
+        "runtime": true,
+        "runtime_actual": 0.40963855421686746,
+        "runtime_expected": 0.40963855421686746,
+        "runtime_equal": true
+      },
+      "count": 719
+    },
+    {
+      "id": "UPDATE-GAP-0005",
+      "hash": "79a537d9322c0a8f",
+      "category": "unsupported_feature_emitted",
+      "family": "P4_EMITTER",
+      "name": "type_mismatch",
+      "operator": "NA",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return \"wrong\"\n}\n",
+      "result": {
+        "id": 10,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "331ad0148cc2dd7f3e2932c1cb546feb5371364283a3889806d7836fe2afc3ea",
+        "js_sha256": "27f56b5a1b904d1895e5d2a977e7b537ce57968e4d3b9c500a07e087cc8061e7",
+        "elapsed_ms": 0.25729499999999916,
+        "runtime": true,
+        "runtime_actual": "wrong",
+        "runtime_expected": "wrong",
+        "runtime_equal": true
+      },
+      "count": 1881
+    },
+    {
+      "id": "UPDATE-GAP-0006",
+      "hash": "2cdf8b0c97c61789",
+      "category": "unsupported_feature_emitted",
+      "family": "P3_AST",
+      "name": "missing_return",
+      "operator": "NA",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  let$x = 193\n}\n",
+      "result": {
+        "id": 15,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "bb2a2443776126512449e740ecba0f842cccc4279a6136b21139fada68d3373f",
+        "js_sha256": "e8af60f6e535db34bb0096e26d402809cc6ed2958a5db34a5af85feb6b626eb1",
+        "elapsed_ms": 0.15009800000001405
+      },
+      "count": 1913
+    },
+    {
+      "id": "UPDATE-GAP-0007",
+      "hash": "ce0f2fe95b487322",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "^",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 378^34\n}\n",
+      "result": {
+        "id": 20,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"378^34\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "db6d0a642e5b91693637e70c20cfdf0d9bcb3ffbd249e802df0029afb6b7094a",
+        "js_sha256": "27b33ccd627e11beab4f4911314be496861c450eb5d53c484113ba0640c8eb19",
+        "elapsed_ms": 0.2575860000000034,
+        "runtime": true,
+        "runtime_actual": 344,
+        "runtime_expected": 344,
+        "runtime_equal": true
+      },
+      "count": 757
+    },
+    {
+      "id": "UPDATE-GAP-0008",
+      "hash": "244fb67479050097",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": ">>",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 168>>813\n}\n",
+      "result": {
+        "id": 23,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"168>>813\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "35dd5d70fcc813b41d0d06b357e0bde6418cc13a963ceffb159bafc8a898e680",
+        "js_sha256": "945c0c3e1fdee98ece259cabd82bb26dab6604c37ab18e70375283cf608de2b9",
+        "elapsed_ms": 0.1445299999999179,
+        "runtime": true,
+        "runtime_actual": 0,
+        "runtime_expected": 0,
+        "runtime_equal": true
+      },
+      "count": 722
+    },
+    {
+      "id": "UPDATE-GAP-0009",
+      "hash": "31910e008f4afb38",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "|",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 23|991\n}\n",
+      "result": {
+        "id": 24,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"23|991\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "6598c1d15c63ac5ab46081f5a1b69f4acf2c7c9eab0c88df57d31c302070dd33",
+        "js_sha256": "e9a4095da06ac06f3e9c88fa7bdb38c826cd9cd04ec606d903b5f1999c94f312",
+        "elapsed_ms": 0.17124100000000908,
+        "runtime": true,
+        "runtime_actual": 991,
+        "runtime_expected": 991,
+        "runtime_equal": true
+      },
+      "count": 716
+    },
+    {
+      "id": "UPDATE-GAP-0010",
+      "hash": "ea37e94a66c7de86",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": ">=",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->bool {\n  return 762>=129\n}\n",
+      "result": {
+        "id": 27,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"762>=129\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "3a5489db30e08b05d5ef3e7e4d87a658cfe785c3131814057263b369bd82e08a",
+        "js_sha256": "99152cb684075296991e3397928ea781fb42c78a6698723d82ff41326c555a9b",
+        "elapsed_ms": 0.15788099999997485,
+        "runtime": true,
+        "runtime_actual": true,
+        "runtime_expected": true,
+        "runtime_equal": true
+      },
+      "count": 740
+    },
+    {
+      "id": "UPDATE-GAP-0011",
+      "hash": "96d0613425e28994",
+      "category": "unsupported_feature_emitted",
+      "family": "P4_EMITTER",
+      "name": "bitwise_raw",
+      "operator": "&",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 717&1\n}\n",
+      "result": {
+        "id": 30,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"717&1\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "73abd66255f7f177999de56b5dd469f8b7a06dd4c826ed301d4bccec9b28c432",
+        "js_sha256": "b5c494293fdc2d6838282913bef87b738033f26dc26b83c56bc56e8ee5d5c67b",
+        "elapsed_ms": 0.25342000000000553,
+        "runtime": true,
+        "runtime_actual": 1,
+        "runtime_expected": 1,
+        "runtime_equal": true
+      },
+      "count": 1925
+    },
+    {
+      "id": "UPDATE-GAP-0012",
+      "hash": "05c6c532ee88388f",
+      "category": "unsupported_feature_emitted",
+      "family": "P2_PARSER",
+      "name": "ternary",
+      "operator": "?:",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 501>825?501:825\n}\n",
+      "result": {
+        "id": 32,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"501>825\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "51a0efb7367c2df281a4efd775b0dcd959cb8a89c4a07dad04ea628bf8962068",
+        "js_sha256": "3594c72741f0592caccaaa829acb49f46d7b6023797607e73758f85e3c9ad438",
+        "elapsed_ms": 0.252913000000035,
+        "runtime": true,
+        "runtime_actual": 825,
+        "runtime_expected": 825,
+        "runtime_equal": true
+      },
+      "count": 1556
+    },
+    {
+      "id": "UPDATE-GAP-0013",
+      "hash": "8df07ef3b4cfe56f",
+      "category": "unsupported_feature_emitted",
+      "family": "P5_RUNTIME",
+      "name": "differential",
+      "operator": "&",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 790&698\n}\n",
+      "result": {
+        "id": 36,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"790&698\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "c5a1ed945aaeabcafffe5822afa85f065326c82084ea2a9c2a2e6b9d5fa7497d",
+        "js_sha256": "fcdf56cc5535e57ddc7917d7c824a610ec1149a35975f9952f718eae54bc4123",
+        "elapsed_ms": 0.10845599999993283,
+        "runtime": true,
+        "runtime_actual": 530,
+        "runtime_expected": 530,
+        "runtime_equal": true
+      },
+      "count": 1231
+    },
+    {
+      "id": "UPDATE-GAP-0014",
+      "hash": "af8c55bc192b75f7",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "<<",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 420<<183\n}\n",
+      "result": {
+        "id": 40,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"420<<183\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "c9adbee8ea8f797dff5bb9c02d790023f8e0019565cef5c4d83770215494f28a",
+        "js_sha256": "9290253a41c98a7ee2dd7ca1216f72f01ef241ab9f1d14fd9f763472d6307bb0",
+        "elapsed_ms": 0.1305299999999079,
+        "runtime": true,
+        "runtime_actual": -771751936,
+        "runtime_expected": -771751936,
+        "runtime_equal": true
+      },
+      "count": 704
+    },
+    {
+      "id": "UPDATE-GAP-0015",
+      "hash": "00d851b6b1b3b805",
+      "category": "runtime_divergence",
+      "family": "P2_PARSER",
+      "name": "div_chain",
+      "operator": "/ ,/",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 301 / 819 / 18\n}\n",
+      "result": {
+        "id": 42,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [],
+        "parse_errors": [],
+        "ts_sha256": "9dba3ba77642c928418ccda8a545a8949cebb46456d64d61f55c63c7ad25c27a",
+        "js_sha256": "48a0904ad8b1a9393ceb566771841d6fc791f92af866214f1b30dbe4a046eb82",
+        "elapsed_ms": 0.18276300000002266,
+        "runtime": true,
+        "runtime_actual": 6.615384615384615,
+        "runtime_expected": 0.020417853751187084,
+        "runtime_equal": false
+      },
+      "count": 1574
+    },
+    {
+      "id": "UPDATE-GAP-0016",
+      "hash": "5fbe1210adf96e0b",
+      "category": "unsupported_feature_emitted",
+      "family": "P4_EMITTER",
+      "name": "shift_raw",
+      "operator": "<<",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 882<<29\n}\n",
+      "result": {
+        "id": 46,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"882<<29\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "96eac6137dbc6edfd7f6fd50afdaea6189f2821e35413e628c6a8390afcf0e92",
+        "js_sha256": "25321aad61182b809aa0f43e0191a4247cd07fd32cfea2385207fd0a6f0723c9",
+        "elapsed_ms": 0.13928699999996752,
+        "runtime": true,
+        "runtime_actual": 1073741824,
+        "runtime_expected": 1073741824,
+        "runtime_equal": true
+      },
+      "count": 1879
+    },
+    {
+      "id": "UPDATE-GAP-0017",
+      "hash": "e0f96f59cce629b0",
+      "category": "accepted_with_diagnostics",
+      "family": "P5_RUNTIME",
+      "name": "differential",
+      "operator": "/",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 258/213\n}\n",
+      "result": {
+        "id": 56,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"258/213\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "4cf8b781a2a15d8010e4185e8cf428d66ae7bc1173a9f9a7faf8c8685af14af5",
+        "js_sha256": "e90c1341b758c841cf3b18ac13ccc914e5b5a3b982fb8d696b54cb7d27e5bfe0",
+        "elapsed_ms": 0.11841499999991356,
+        "runtime": true,
+        "runtime_actual": 1.2112676056338028,
+        "runtime_expected": 1.2112676056338028,
+        "runtime_equal": true
+      },
+      "count": 1291
+    },
+    {
+      "id": "UPDATE-GAP-0018",
+      "hash": "4a484740b20c1e9a",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": ">",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->bool {\n  return 163>86\n}\n",
+      "result": {
+        "id": 84,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"163>86\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "eb37281163b3bef36bb2ee84a7f4966e5c129c1c8106159ece4d6e0ba5878414",
+        "js_sha256": "088bec9afade30d2a5fb1942be25792770938235b4d215d2f40c8093addd4b73",
+        "elapsed_ms": 0.11366400000019894,
+        "runtime": true,
+        "runtime_actual": true,
+        "runtime_expected": true,
+        "runtime_equal": true
+      },
+      "count": 767
+    },
+    {
+      "id": "UPDATE-GAP-0019",
+      "hash": "ac76d23a4664bd35",
+      "category": "unsupported_feature_emitted",
+      "family": "P4_EMITTER",
+      "name": "modulo_raw",
+      "operator": "%",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 190%469\n}\n",
+      "result": {
+        "id": 87,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"190%469\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "ec10f157623b54b7d8b8ecff7cd50490d6af80e08a767ec4639815bc32ce8c73",
+        "js_sha256": "69a6c18905176df9a813701ae04795ed1d3af392e8925d18a396d6a37680b834",
+        "elapsed_ms": 0.11388200000010329,
+        "runtime": true,
+        "runtime_actual": 190,
+        "runtime_expected": 190,
+        "runtime_equal": true
+      },
+      "count": 1933
+    },
+    {
+      "id": "UPDATE-GAP-0020",
+      "hash": "6873ee05df21a308",
+      "category": "accepted_with_diagnostics",
+      "family": "P4_EMITTER",
+      "name": "division_no_spaces",
+      "operator": "/",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 183/803\n}\n",
+      "result": {
+        "id": 95,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"183/803\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "c7b29af54f850337e1616c775a10b86a64866abcdbc98fb425a95824c1557974",
+        "js_sha256": "58de69d114c47ca572940e0780255bf5659d995cd0d268dd005d571995f65750",
+        "elapsed_ms": 0.1408529999998791,
+        "runtime": true,
+        "runtime_actual": 0.22789539227895392,
+        "runtime_expected": 0.22789539227895392,
+        "runtime_equal": true
+      },
+      "count": 1875
+    },
+    {
+      "id": "UPDATE-GAP-0021",
+      "hash": "c688ef6a02ba7b11",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "<=",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->bool {\n  return 990<=113\n}\n",
+      "result": {
+        "id": 98,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"990<=113\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "d9e26b4467bc502d7cbd69bc70d91ce3b63032098822cc3e61c63f9b7007e473",
+        "js_sha256": "37468744d690ab88d91365282c54fc2c227bd64c3117ce0819ea4044df84c37b",
+        "elapsed_ms": 0.11599200000000565,
+        "runtime": true,
+        "runtime_actual": false,
+        "runtime_expected": false,
+        "runtime_equal": true
+      },
+      "count": 747
+    },
+    {
+      "id": "UPDATE-GAP-0022",
+      "hash": "1ea8eff18f774aea",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "<",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->bool {\n  return 245<920\n}\n",
+      "result": {
+        "id": 107,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"245<920\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "8e3e1a52ac2863160220e769e5d88076d1adbc9fb029181c8150dd43b6c4c5ae",
+        "js_sha256": "405d9716259914a4286d8c69f46002003abe09a115fd2d9872f86bedb9def856",
+        "elapsed_ms": 0.15171400000008362,
+        "runtime": true,
+        "runtime_actual": true,
+        "runtime_expected": true,
+        "runtime_equal": true
+      },
+      "count": 659
+    },
+    {
+      "id": "UPDATE-GAP-0023",
+      "hash": "ac569e1576167cdb",
+      "category": "unsupported_feature_emitted",
+      "family": "P5_RUNTIME",
+      "name": "differential",
+      "operator": "<<",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 220<<987\n}\n",
+      "result": {
+        "id": 158,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"220<<987\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "6b3990b31c7f3e749f9333bad3a288a362868c6bb91fa2765d804d7c31f2b1f9",
+        "js_sha256": "16b201e71b3b382f9ec1fe5e4a08ba01b25137eb64531ece6ad0b30fcab46eac",
+        "elapsed_ms": 0.11605800000006639,
+        "runtime": true,
+        "runtime_actual": -536870912,
+        "runtime_expected": -536870912,
+        "runtime_equal": true
+      },
+      "count": 1286
+    },
+    {
+      "id": "UPDATE-GAP-0024",
+      "hash": "cbdf0b7e3649f8f3",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "%",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 813%793\n}\n",
+      "result": {
+        "id": 198,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"813%793\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "02cbf38a77559c9fc78c95450f4b7ec685c8b41141e1281046d6b15595278d29",
+        "js_sha256": "2dd39693565d3fef2af6dd72840ffabb0ef99cc0f40a85b5f31c96c13af70dc9",
+        "elapsed_ms": 0.10603400000036345,
+        "runtime": true,
+        "runtime_actual": 20,
+        "runtime_expected": 20,
+        "runtime_equal": true
+      },
+      "count": 729
+    },
+    {
+      "id": "UPDATE-GAP-0025",
+      "hash": "e01875d02cfb7475",
+      "category": "unsupported_feature_emitted",
+      "family": "P1_LEXICAL",
+      "name": "single_operator",
+      "operator": "&",
+      "source": "@arena_update_probe:1.0.0\nfn$test()->num {\n  return 181&429\n}\n",
+      "result": {
+        "id": 327,
+        "compile": true,
+        "phase": "compiled",
+        "diagnostics": [
+          {
+            "severity": "warn",
+            "message": "test: cannot type expression \"181&429\""
+          }
+        ],
+        "parse_errors": [],
+        "ts_sha256": "9f9446e4bfef5052b643f39fa002ffb73df7bc336cb687e8390148baf46ebe41",
+        "js_sha256": "6b8186ccbba02aae41d15857404fa439ce3d3d2c65372ada8ef83ffdf3ccc9dd",
+        "elapsed_ms": 0.10225999999966007,
+        "runtime": true,
+        "runtime_actual": 165,
+        "runtime_expected": 165,
+        "runtime_equal": true
+      },
+      "count": 726
+    }
+  ],
+  "worker_stderr": ""
+}

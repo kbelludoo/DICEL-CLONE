@@ -466,3 +466,95 @@
   source_verified:true,
   next:"fix_SUG_0022_first_then_replay_68575_probes"
 }
+
+~StressAuditResult{
+  id:"CYCLE-0004",
+  duration_ms:1200087,
+  probes:57806,
+  compile_pass:53987,
+  compile_fail:3819,
+  runtime_tests:52074,
+  runtime_pass:48795,
+  runtime_fail:3279,
+  confirmed_findings:25,
+  false_positives:0,
+  fixes_applied:0,
+  report_ref:"arena/ARENA_UPDATE_20M_REPORT.dicel",
+  status:"UPDATED_COMPILER_BUGS_CONFIRMED"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0023",
+  loop:8,
+  area:"parser_associativity",
+  evidence:"arena/ARENA_UPDATE_20M_REPORT.dicel:UPDATE-GAP-0001+UPDATE-GAP-0015",
+  problem:"subtraction_and_division_chains_are_parsed_right_associative",
+  proposed_change:"parse_left_associative_additive_and_multiplicative_chains!preserve_parentheses",
+  validation:"rerun_seed_260820!1705_subtraction_and_1574_division_divergences_become_zero",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0024",
+  loop:8,
+  area:"semantic_emitter_boundary",
+  evidence:"arena/ARENA_UPDATE_20M_REPORT.dicel:unsupported_feature_emitted_24109",
+  problem:"unknown_expressions_are_warnings_but_raw_source_is_emitted_and_executed",
+  proposed_change:"promote_unknown_expression_to_error!block_emission!remove_raw_passthrough_from_emitter",
+  validation:"all_unsupported_operators_controlled_rejection!zero_target_artifact_for_unknown_IR",
+  priority:"critical",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0025",
+  loop:8,
+  area:"typechecker",
+  evidence:"arena/ARENA_UPDATE_20M_REPORT.dicel:UPDATE-GAP-0005+UPDATE-GAP-0006",
+  problem:"return_type_mismatch_and_missing_return_compile_without_error",
+  proposed_change:"infer_expression_type!validate_return_assignability!require_return_on_all_paths_for_non_void",
+  validation:"num_return_string_rejected!non_void_missing_return_rejected",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0026",
+  loop:8,
+  area:"types",
+  evidence:"arena/ARENA_UPDATE_20M_REPORT.dicel:UPDATE-GAP-0002",
+  problem:"unknown_return_type_is_warning_and_compilation_remains_successful",
+  proposed_change:"unknown_contract_types_are_semantic_errors!do_not_map_unknown_type_to_any",
+  validation:"Mystery_return_type_compile_rejected!no_target_emitted",
+  priority:"high",
+  status:"proposed_verified_evidence"
+}
+
+~ImprovementSuggestion{
+  id:"SUG-0027",
+  loop:8,
+  area:"lexer_parser",
+  evidence:"arena/ARENA_UPDATE_20M_REPORT.dicel:UPDATE-GAP-0004+UPDATE-GAP-0017+UPDATE-GAP-0020",
+  problem:"division_recognition_depends_on_surrounding_whitespace",
+  proposed_change:"tokenize_slash_independent_of_whitespace!disambiguate_regex_by_lexical_context",
+  validation:"a_div_b_and_a_space_div_space_b_same_AST_same_output_no_warning",
+  priority:"medium",
+  status:"proposed_verified_evidence"
+}
+
+~suggestion_loop_v4:SuggestionLoopSummary{
+  loops:8,
+  suggestions:27,
+  critical:9,
+  high:12,
+  medium:6,
+  low:0,
+  source_verified:true,
+  next:"fix_associativity_and_raw_unknown_emission_then_replay_seed_260820"
+}
+
+~EvidenceHash{path:"arena/ARENA_UPDATE_20M_REPORT.dicel",sha256:"caa9da6b8620e7f4168fdea7443968d09022813574b71bb9a95b4778931ebd6b"}
+~EvidenceHash{path:"arena/ARENA_UPDATE_20M_RESULTS.json",sha256:"7b4b5ec58bd90421e24d6f872d0d8c4d622d6d4a53c638c890f53e6949a49e59"}
+~EvidenceHash{path:"arena/latest_compiler_stress_20m.mjs",sha256:"6ce0d67e2de61d94ba20b7a4425570b836cb1a2a5afc54a7ccf717a538d72bfd"}
+~EvidenceHash{path:"arena/latest_compiler_worker.mjs",sha256:"254cafd699e7bb8a5b52a934b9be976bd20514b9d6d8cad3f55d2d563e71c816"}
